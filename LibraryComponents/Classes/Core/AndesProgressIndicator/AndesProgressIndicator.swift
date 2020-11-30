@@ -12,7 +12,7 @@ import Foundation
 @objc public class AndesProgressIndicator: UIView {
     internal var contentView: AndesProgressIndicatorView!
 
-    @objc public var type: AndesProgressIndicatorType = .success {
+    @objc public var type: AndesProgressIndicatorType = .circular {
         didSet {
             updateContentView()
         }

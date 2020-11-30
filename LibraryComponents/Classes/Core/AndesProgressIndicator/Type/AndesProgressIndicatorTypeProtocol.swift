@@ -10,5 +10,7 @@
 import Foundation
 
 internal protocol AndesProgressIndicatorTypeProtocol {
-    var textColor: UIColor { get }
+    var tint: UIColor { get }
+    var textColor: UIColor? { get }
+    var label: String? { get }
 }

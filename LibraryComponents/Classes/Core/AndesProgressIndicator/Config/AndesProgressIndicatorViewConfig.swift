@@ -11,10 +11,16 @@ import Foundation
 
 /// used to define the ui of internal AndesProgressIndicator views
 internal struct AndesProgressIndicatorViewConfig {
+
+    var tint: UIColor?
     var textColor: UIColor?
-    init() {}
+    var label: String?
+
+    init () {}
 
     init(type: AndesProgressIndicatorTypeProtocol) {
         self.textColor = type.textColor
+        self.tint = type.tint
+        self.label = type.label
     }
 }

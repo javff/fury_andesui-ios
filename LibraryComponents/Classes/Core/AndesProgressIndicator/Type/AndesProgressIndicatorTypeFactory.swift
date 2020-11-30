@@ -12,10 +12,12 @@ import Foundation
 class AndesProgressIndicatorTypeFactory {
     static func provide(_ type: AndesProgressIndicatorType) -> AndesProgressIndicatorTypeProtocol {
         switch type {
-        case .success:
-            return AndesProgressIndicatorTypeSuccess()
-        case .error:
-            return AndesProgressIndicatorTypeError()
+        case .linear:
+            fatalError()
+//            return AndesProgressIndicatorTypeSuccess()
+        case .circular:
+            fatalError()
+//            return AndesProgressIndicatorTypeError()
         }
     }
 }
