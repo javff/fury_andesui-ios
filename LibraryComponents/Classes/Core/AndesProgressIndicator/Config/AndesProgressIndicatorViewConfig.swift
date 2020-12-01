@@ -15,6 +15,7 @@ internal struct AndesProgressIndicatorViewConfig {
     var tint: UIColor?
     var textColor: UIColor?
     var label: String?
+    var size: AndesProgressIndicatorSizeProtocol?
 
     init () {}
 
@@ -22,5 +23,6 @@ internal struct AndesProgressIndicatorViewConfig {
         self.textColor = type.textColor
         self.tint = type.tint
         self.label = type.label
+        self.size = type.size
     }
 }

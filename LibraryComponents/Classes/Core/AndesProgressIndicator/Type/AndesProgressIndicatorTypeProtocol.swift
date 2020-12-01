@@ -13,4 +13,6 @@ internal protocol AndesProgressIndicatorTypeProtocol {
     var tint: UIColor { get }
     var textColor: UIColor? { get }
     var label: String? { get }
+    var size: AndesProgressIndicatorSizeProtocol { get }
+
 }
