@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeRouter: NSObject {
     func start(in window: UIWindow)
+    func routeToProgressIndicator()
     func routeToCoachmark()
     func routeToButton()
     func routeToMessages()
@@ -32,6 +33,7 @@ class HomeAppRouter: NSObject {
     let view = HomeViewController()
     var presenter: HomePresenter?
 
+    let progressIndicatorRouter = ProgressIndicatorAppRouter()
     let coachmarkRouter = CoachmarkAppRouter()
     let buttonsRouter = ButtonsAppRouter()
     let messagesRouter = MessagesAppRouter()
@@ -58,6 +60,10 @@ extension HomeAppRouter: HomeRouter {
 
         window.rootViewController = UINavigationController(rootViewController: view)
         window.makeKeyAndVisible()
+    }
+
+    func routeToProgressIndicator() {
+        progressIndicatorRouter.route(from: view)
     }
 
     func routeToCoachmark() {

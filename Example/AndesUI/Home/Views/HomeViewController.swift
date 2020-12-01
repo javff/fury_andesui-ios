@@ -17,6 +17,7 @@ protocol HomeView: NSObject {
 class HomeViewController: UIViewController {
 
     weak var presenter: HomePresenter!
+    @IBOutlet weak var progressIndicatorBtn: AndesButton!
     @IBOutlet weak var coachmarkBtn: AndesButton!
     @IBOutlet weak var button: AndesButton!
     @IBOutlet weak var stackView: UIStackView!
@@ -105,6 +106,10 @@ class HomeViewController: UIViewController {
         guard let url = URL(string: "https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933") else { return }
         UIApplication.shared.open(url)
 
+    }
+
+    @IBAction func progressIndicatorBtnTapped(_ sender: Any) {
+        presenter.presentProgressIndicator()
     }
 
     @IBAction func textfieldBtnTapped(_ sender: Any) {
