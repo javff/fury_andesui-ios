@@ -12,7 +12,25 @@ import Foundation
 @objc public class AndesProgressIndicator: UIView {
     internal var contentView: AndesProgressIndicatorView!
 
-    @objc public var type: AndesProgressIndicatorType = .circular {
+    @objc public var size: AndesProgressIndicatorSize = .large {
+        didSet {
+            updateContentView()
+        }
+    }
+
+    @IBInspectable public var tint: UIColor? {
+        didSet {
+            updateContentView()
+        }
+    }
+
+    @IBInspectable public var textColor: UIColor? {
+        didSet {
+            updateContentView()
+        }
+    }
+
+    @IBInspectable public var label: String? {
         didSet {
             updateContentView()
         }
@@ -28,9 +46,15 @@ import Foundation
         setup()
     }
 
-    @objc public init(type: AndesProgressIndicatorType) {
+    @objc public init(size: AndesProgressIndicatorSize,
+                      tint: UIColor,
+                      textColor: UIColor? = nil,
+                      label: String? = nil) {
         super.init(frame: .zero)
-        self.type = type
+        self.size = size
+        self.textColor = textColor
+        self.tint = tint
+        self.label = label
         setup()
     }
 
@@ -57,7 +81,7 @@ import Foundation
     }
 
     private func updateContentView() {
-        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: .medium)
+        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: self.size)
         let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(textColor: .red, tint: .black, label: "test", size: size)
         contentView.update(withConfig: config)
     }
@@ -72,13 +96,13 @@ import Foundation
 
 // MARK: - IB interface
 public extension AndesProgressIndicator {
-    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'type' instead.")
-    @IBInspectable var ibType: String {
+    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'Size' instead.")
+    @IBInspectable var ibSize: String {
         set(val) {
-            self.type = AndesProgressIndicatorType.checkValidEnum(property: "IB type", key: val)
+            self.size = AndesProgressIndicatorSize.checkValidEnum(property: "IB size", key: val)
         }
         get {
-            return self.type.toString()
+            return self.size.toString()
         }
     }
 }
