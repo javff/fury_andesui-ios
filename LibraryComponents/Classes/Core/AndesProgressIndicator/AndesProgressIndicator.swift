@@ -82,7 +82,12 @@ import Foundation
 
     private func updateContentView() {
         let size = AndesProgressIndicatorSizeFactory.provideStyle(key: self.size)
-        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(textColor: .red, tint: .black, label: "test", size: size)
+        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(
+            textColor: self.textColor,
+            tint: self.tint,
+            label: self.label,
+            size: size
+        )
         contentView.update(withConfig: config)
     }
 
