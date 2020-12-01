@@ -13,7 +13,6 @@ class ProgressIndicatorViewController: UIViewController {
 
     @IBOutlet weak var progressIndicatorLarge: AndesProgressIndicator!
     @IBOutlet weak var progressIndicatorSmall: AndesProgressIndicator!
-
     @IBOutlet weak var progressIndicatorMedium: AndesProgressIndicator!
 
     override func viewDidLoad() {
