@@ -125,6 +125,8 @@
 		CEA2960B25128DF900FB625F /* TextFieldsCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA2960A25128DF900FB625F /* TextFieldsCodeViewController.xib */; };
 		CEB95878252BC8CD00C74F01 /* AndesTextFieldCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95876252BC7B000C74F01 /* AndesTextFieldCodeTests.swift */; };
 		E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */; };
+		E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */; };
+		E2C0157F2575D467001B89C3 /* ProgressIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */; };
 		E615508A23D619E300417B5F /* AndesButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E615508823D6196C00417B5F /* AndesButtonTests.swift */; };
 		E662DEB1254B300900A86D10 /* BottomSheetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E662DEB0254B300900A86D10 /* BottomSheetRouter.swift */; };
 		E662DEB3254B305100A86D10 /* BottomSheetSwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E662DEB2254B305100A86D10 /* BottomSheetSwiftExampleViewController.swift */; };
@@ -320,6 +322,8 @@
 		CEB95876252BC7B000C74F01 /* AndesTextFieldCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndesTextFieldCodeTests.swift; sourceTree = "<group>"; };
 		D91DB4D401500717C545A996 /* Pods_AndesUI_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AndesUI_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorRouter.swift; sourceTree = "<group>"; };
+		E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorViewController.swift; sourceTree = "<group>"; };
+		E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorViewController.xib; sourceTree = "<group>"; };
 		E3E9B26B74F98D6773C98C88 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E615508823D6196C00417B5F /* AndesButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndesButtonTests.swift; sourceTree = "<group>"; };
 		E61E8ED6239E9A7A00F85A8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -965,6 +969,7 @@
 		E2C015772575D218001B89C3 /* ProgressIndicator */ = {
 			isa = PBXGroup;
 			children = (
+				E2C0157B2575D44E001B89C3 /* Views */,
 				E2C015782575D229001B89C3 /* Router */,
 			);
 			path = ProgressIndicator;
@@ -976,6 +981,15 @@
 				E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		E2C0157B2575D44E001B89C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */,
+				E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E662DEAF254B2F7000A86D10 /* BottomSheet */ = {
@@ -1201,6 +1215,7 @@
 				6D87741B2523D13900C74B83 /* TagChoiceObjCViewController.xib in Resources */,
 				90530B0C242BFAA7005E056A /* AndesBadgeShowcaseViewController.xib in Resources */,
 				9C9B5A9223ECF2120007234B /* CHANGELOG.md in Resources */,
+				E2C0157F2575D467001B89C3 /* ProgressIndicatorViewController.xib in Resources */,
 				490589A624BE3CA70044FD0B /* CardViewController.xib in Resources */,
 				0323A415256085A2001A480F /* DatePickerViewController.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
@@ -1366,6 +1381,7 @@
 				CE78E755252E2E9B00AF47F3 /* TextFieldsCodeObjCViewController.m in Sources */,
 				6A3C9CFD23C692B6007D0C8B /* HomeViewController.swift in Sources */,
 				80B22F1C24DC5C3700FE9197 /* CoachmarkViewController.swift in Sources */,
+				E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */,
 				F85E051E24AF68150059C6FA /* RadioButtonObjCViewController.m in Sources */,
 				90F4781F243534F0001CEC90 /* BadgeObjCViewController.m in Sources */,
 				8617BD172499B5860071319C /* SnackbarRouter.swift in Sources */,

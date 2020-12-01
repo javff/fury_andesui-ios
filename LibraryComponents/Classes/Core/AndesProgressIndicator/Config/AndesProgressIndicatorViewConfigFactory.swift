@@ -10,10 +10,18 @@
 import Foundation
 
 internal class AndesProgressIndicatorViewConfigFactory {
-    static func provideInternalConfig(type: AndesProgressIndicatorType) -> AndesProgressIndicatorViewConfig {
-        let typeIns = AndesProgressIndicatorTypeFactory.provide(type)
+    static func provideInternalConfig(
+        textColor: UIColor?,
+        tint: UIColor?,
+        label: String?,
+        size: AndesProgressIndicatorSizeProtocol?) -> AndesProgressIndicatorViewConfig {
 
-        let config = AndesProgressIndicatorViewConfig(type: typeIns)
+        let config = AndesProgressIndicatorViewConfig(
+            textColor: textColor,
+            tint: tint,
+            label: label,
+            size: size
+        )
 
         return config
     }

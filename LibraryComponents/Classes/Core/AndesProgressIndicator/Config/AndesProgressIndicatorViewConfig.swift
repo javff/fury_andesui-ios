@@ -19,10 +19,14 @@ internal struct AndesProgressIndicatorViewConfig {
 
     init () {}
 
-    init(type: AndesProgressIndicatorTypeProtocol) {
-        self.textColor = type.textColor
-        self.tint = type.tint
-        self.label = type.label
-        self.size = type.size
+    init(
+        textColor: UIColor?,
+        tint: UIColor?,
+        label: String?,
+        size: AndesProgressIndicatorSizeProtocol?) {
+        self.textColor = textColor
+        self.tint = tint
+        self.label = label
+        self.size = size
     }
 }

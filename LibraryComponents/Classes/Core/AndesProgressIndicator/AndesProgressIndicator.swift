@@ -57,13 +57,15 @@ import Foundation
     }
 
     private func updateContentView() {
-        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(type: self.type)
+        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: .medium)
+        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(textColor: .red, tint: .black, label: "test", size: size)
         contentView.update(withConfig: config)
     }
 
     /// Should return a view depending on which modifier is selected
     private func provideView() -> AndesProgressIndicatorView {
-        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(type: self.type)
+        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: .small)
+        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(textColor: .red, tint: .black, label: "test", size: size)
         return AndesProgressIndicatorViewDefault(withConfig: config)
     }
 }

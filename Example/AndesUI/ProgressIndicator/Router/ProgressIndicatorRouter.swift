@@ -14,12 +14,12 @@ protocol ProgressIndicatorRouter: NSObject {
 }
 
 class ProgressIndicatorAppRouter: NSObject {
-    var view: ButtonsViewController!
+    var view: ProgressIndicatorViewController!
 }
 
 extension ProgressIndicatorAppRouter: ProgressIndicatorRouter {
     func route(from: UIViewController) {
-        view = ButtonsViewController()
+        view = ProgressIndicatorViewController()
         from.navigationController?.pushViewController(view, animated: true)
     }
 }

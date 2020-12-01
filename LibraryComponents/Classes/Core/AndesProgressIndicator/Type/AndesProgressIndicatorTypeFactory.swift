@@ -13,8 +13,7 @@ class AndesProgressIndicatorTypeFactory {
     static func provide(_ type: AndesProgressIndicatorType) -> AndesProgressIndicatorTypeProtocol {
         switch type {
         case .linear:
-            fatalError()
-//            return AndesProgressIndicatorTypeSuccess()
+            fatalError("no implemented yet.")
         case .circular:
             fatalError()
 //            return AndesProgressIndicatorTypeError()
