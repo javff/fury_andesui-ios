@@ -60,6 +60,7 @@ class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
         self.containerView.color = config.tint
         self.textLabel.text = config.label
         self.textLabel.textColor = config.textColor
+        self.textLabel.font = size.textFont
         let labelIsAvailable = config.label != nil
         self.stackView.spacing = labelIsAvailable ? size.textSpacing : 0
     }

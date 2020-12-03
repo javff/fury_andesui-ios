@@ -11,6 +11,8 @@ import UIKit
 
 class AndesProgressIndicatorViewCircular: AndesProgressIndicatorAbstractView {
 
+    private let progressValue: CGFloat = 1
+
     override func loadNib() {
         let bundle = AndesBundle.bundle()
         bundle.loadNibNamed("AndesProgressIndicatorViewCircular", owner: self, options: nil)
@@ -18,6 +20,6 @@ class AndesProgressIndicatorViewCircular: AndesProgressIndicatorAbstractView {
 
     override func updateView() {
         super.updateView()
-        self.containerView.progress = 1
+        self.containerView.progress = progressValue
     }
 }
