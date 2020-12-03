@@ -95,7 +95,7 @@ import Foundation
     private func provideView() -> AndesProgressIndicatorView {
         let size = AndesProgressIndicatorSizeFactory.provideStyle(key: .small)
         let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(textColor: .red, tint: .black, label: "test", size: size)
-        return AndesProgressIndicatorViewDefault(withConfig: config)
+        return AndesProgressIndicatorViewCircular(withConfig: config)
     }
 }
 

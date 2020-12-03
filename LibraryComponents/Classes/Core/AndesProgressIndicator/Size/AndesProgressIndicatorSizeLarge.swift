@@ -11,5 +11,6 @@ internal struct AndesProgressIndicatorSizeLarge: AndesProgressIndicatorSizeProto
 
     var strokeWidth: CGFloat = 4
     var height: CGFloat = 48
+    var textSpacing: CGFloat = 24
 
 }

@@ -10,7 +10,12 @@
 import UIKit
 
 class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
+
     @IBOutlet weak var componentView: UIView!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var containerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerView: AndesCircularProgressBar!
 
     var config: AndesProgressIndicatorViewConfig
     init(withConfig config: AndesProgressIndicatorViewConfig) {
@@ -49,6 +54,13 @@ class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
 
     /// Override this method on each Badge View to setup its unique components
     func updateView() {
-
+        guard let size = config.size else { return }
+        self.containerViewHeightConstraint.constant = size.height
+        self.containerView.ringWidth = size.strokeWidth
+        self.containerView.color = config.tint
+        self.textLabel.text = config.label
+        self.textLabel.textColor = config.textColor
+        let labelIsAvailable = config.label != nil
+        self.stackView.spacing = labelIsAvailable ? size.textSpacing : 0
     }
 }

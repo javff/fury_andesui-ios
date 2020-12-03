@@ -1,5 +1,5 @@
 //
-//  AndesCircularIndeterminateAnimation.swift
+//  AndesStrokeAnimation.swift
 //  AndesUI
 //
 //  Created by Juan Andres Vasquez Ferrer on 01-12-20.

@@ -13,4 +13,5 @@ import Foundation
 internal protocol AndesProgressIndicatorSizeProtocol {
     var strokeWidth: CGFloat { get }
     var height: CGFloat { get }
+    var textSpacing: CGFloat { get }
 }

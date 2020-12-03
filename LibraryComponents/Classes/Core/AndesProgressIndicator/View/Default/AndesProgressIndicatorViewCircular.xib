@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesProgressIndicatorAbstractView" customModule="AndesUI">
+            <connections>
+                <outlet property="componentView" destination="iN0-l3-epB" id="pJc-XA-8DK"/>
+                <outlet property="containerView" destination="Bhg-eP-9Nc" id="Df5-FI-ZTM"/>
+                <outlet property="containerViewHeightConstraint" destination="FKk-BF-3wc" id="iPq-fw-IL2"/>
+                <outlet property="stackView" destination="U9J-Tx-UIw" id="qt4-t2-tat"/>
+                <outlet property="textLabel" destination="mP6-5r-HVe" id="EDS-2D-paA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="198" height="148"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U9J-Tx-UIw">
+                    <rect key="frame" x="0.0" y="0.0" width="198" height="148"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxZ-qQ-PDo">
+                            <rect key="frame" x="0.0" y="0.0" width="198" height="127.5"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bhg-eP-9Nc" customClass="AndesCircularProgressBar" customModule="AndesUI">
+                                    <rect key="frame" x="75" y="40" width="48" height="48"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="FKk-BF-3wc"/>
+                                        <constraint firstAttribute="width" secondItem="Bhg-eP-9Nc" secondAttribute="height" multiplier="1:1" id="tNK-eR-NcI"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ringWidth">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Bhg-eP-9Nc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lxZ-qQ-PDo" secondAttribute="top" id="clV-59-fMI"/>
+                                <constraint firstItem="Bhg-eP-9Nc" firstAttribute="centerY" secondItem="lxZ-qQ-PDo" secondAttribute="centerY" id="ifV-xN-uEE"/>
+                                <constraint firstItem="Bhg-eP-9Nc" firstAttribute="centerX" secondItem="lxZ-qQ-PDo" secondAttribute="centerX" id="q4D-Mn-kDs"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bhg-eP-9Nc" secondAttribute="trailing" id="qto-zC-bft"/>
+                                <constraint firstItem="Bhg-eP-9Nc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lxZ-qQ-PDo" secondAttribute="leading" id="z5w-gT-5qO"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP6-5r-HVe">
+                            <rect key="frame" x="0.0" y="127.5" width="198" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="U9J-Tx-UIw" secondAttribute="bottom" id="0IL-kC-vOf"/>
+                <constraint firstAttribute="trailing" secondItem="U9J-Tx-UIw" secondAttribute="trailing" id="0Nx-7h-Ubc"/>
+                <constraint firstItem="U9J-Tx-UIw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9gn-7p-PN2"/>
+                <constraint firstItem="U9J-Tx-UIw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eNi-pC-ySO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-88" y="45"/>
+        </view>
+    </objects>
+</document>
