@@ -11,12 +11,24 @@ import AndesUI
 
 class ProgressIndicatorViewController: UIViewController {
 
-    @IBOutlet weak var progressIndicatorLarge: AndesProgressIndicator!
-    @IBOutlet weak var progressIndicatorSmall: AndesProgressIndicator!
-    @IBOutlet weak var progressIndicatorMedium: AndesProgressIndicator!
+    @IBOutlet weak var progressIndicatorLargeWithText: AndesProgressIndicatorIndeterminate!
+    @IBOutlet weak var progressIndicatorSmallWithText: AndesProgressIndicatorIndeterminate!
+    @IBOutlet weak var progressIndicatorMediumWithText: AndesProgressIndicatorIndeterminate!
+
+    @IBOutlet weak var progressIndicatorLargeWithoutText: AndesProgressIndicatorIndeterminate!
+    @IBOutlet weak var progressIndicatorSmallWithoutText: AndesProgressIndicatorIndeterminate!
+    @IBOutlet weak var progressIndicatorMediumWithoutText: AndesProgressIndicatorIndeterminate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        progressIndicatorLargeWithText.startAnimation()
+        progressIndicatorSmallWithText.startAnimation()
+        progressIndicatorMediumWithText.startAnimation()
+
+        progressIndicatorLargeWithoutText.startAnimation()
+        progressIndicatorSmallWithoutText.startAnimation()
+        progressIndicatorMediumWithoutText.startAnimation()
 
     }
 

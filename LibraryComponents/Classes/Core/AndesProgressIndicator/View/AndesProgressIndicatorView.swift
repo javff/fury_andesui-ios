@@ -14,4 +14,6 @@ import Foundation
  */
 internal protocol AndesProgressIndicatorView: UIView {
     func update(withConfig config: AndesProgressIndicatorViewConfig)
+    func startAnimation(type: AndesCircularProgressBar.AnimationType)
+    func stopAnimation()
 }

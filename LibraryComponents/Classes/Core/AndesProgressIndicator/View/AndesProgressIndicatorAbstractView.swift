@@ -63,4 +63,12 @@ class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
         let labelIsAvailable = config.label != nil
         self.stackView.spacing = labelIsAvailable ? size.textSpacing : 0
     }
+
+    func startAnimation(type: AndesCircularProgressBar.AnimationType) {
+        self.containerView.startAnimation(type)
+    }
+
+    func stopAnimation() {
+        self.containerView.stopAnimation()
+    }
 }

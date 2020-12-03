@@ -9,7 +9,8 @@
 
 import Foundation
 
-@objc public class AndesProgressIndicator: UIView {
+@objc public class AndesProgressIndicatorIndeterminate: UIView {
+   
     internal var contentView: AndesProgressIndicatorView!
 
     @objc public var size: AndesProgressIndicatorSize = .large {
@@ -57,6 +58,14 @@ import Foundation
         self.label = label
         setup()
     }
+    
+    @objc public func startAnimation() {
+        self.contentView.startAnimation(type: .infinity)
+    }
+    
+    @objc public func stopAnimation() {
+        self.contentView.stopAnimation()
+    }
 
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
@@ -93,14 +102,19 @@ import Foundation
 
     /// Should return a view depending on which modifier is selected
     private func provideView() -> AndesProgressIndicatorView {
-        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: .small)
-        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(textColor: .red, tint: .black, label: "test", size: size)
+        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: self.size)
+        let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(
+            textColor: self.textColor,
+            tint: self.tint,
+            label: self.label,
+            size: size
+        )
         return AndesProgressIndicatorViewCircular(withConfig: config)
     }
 }
 
 // MARK: - IB interface
-public extension AndesProgressIndicator {
+public extension AndesProgressIndicatorIndeterminate {
     @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'Size' instead.")
     @IBInspectable var ibSize: String {
         set(val) {

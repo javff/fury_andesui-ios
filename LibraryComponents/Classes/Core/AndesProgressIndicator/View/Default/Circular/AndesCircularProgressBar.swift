@@ -10,6 +10,11 @@ import UIKit
 @IBDesignable
 internal class AndesCircularProgressBar: UIView {
 
+    enum AnimationType {
+        case infinity
+        case madeProgress(progress: CGFloat)
+    }
+
     @IBInspectable var color: UIColor? {
         didSet { setNeedsDisplay() }
     }
@@ -67,9 +72,22 @@ internal class AndesCircularProgressBar: UIView {
         progressLayer.strokeColor = color?.cgColor
     }
 
-    func startIndeterminateAnimation() {
+    func startAnimation(_ type: AnimationType) {
+        switch type {
+        case .infinity:
+            self.startInfiniteAnimation()
+        case let .madeProgress(progress):
+            self.startMadeProgressAnimation(progress)
+        }
+    }
+
+    private func startInfiniteAnimation() {
         self.animateRotation()
         self.animateStroke()
+    }
+
+    private func startMadeProgressAnimation(_ progress: CGFloat) {
+        //TODO: - implement madeProgress animation //
     }
 
     func stopAnimation() {
