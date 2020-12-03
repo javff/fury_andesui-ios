@@ -9,12 +9,7 @@ import Foundation
 
 internal struct AndesProgressIndicatorSizeLarge: AndesProgressIndicatorSizeProtocol {
 
-    public var font: UIFont = AndesStyleSheetManager.styleSheet.semiboldSystemFontOfSize(size: 12)
-
-    public var height: CGFloat = 48
-
-    public var borderRadius: CGFloat = 4
-
-    public var padding: CGFloat = 8
+    var strokeWidth: CGFloat = 4
+    var height: CGFloat = 48
 
 }

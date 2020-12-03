@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable
 internal class AndesCircularProgressBar: UIView {
 
-    @IBInspectable var color: UIColor? = .gray {
+    @IBInspectable var color: UIColor? {
         didSet { setNeedsDisplay() }
     }
 
@@ -25,10 +25,23 @@ internal class AndesCircularProgressBar: UIView {
     private var progressLayer = CAShapeLayer()
     private var backgroundMask = CAShapeLayer()
 
+    private let rotationAnimationDuration: Double = 2
+    private let strokeAnimationDuration: Double = 1.5
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupLayers()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.setupLayers()
+    }
+
     private func setupLayers() {
         backgroundMask.lineWidth = ringWidth
         backgroundMask.fillColor = nil
-        backgroundMask.strokeColor = UIColor.black.cgColor
+        backgroundMask.strokeColor = UIColor.blue.cgColor
         layer.mask = backgroundMask
 
         progressLayer.lineWidth = ringWidth
@@ -41,8 +54,8 @@ internal class AndesCircularProgressBar: UIView {
         setupLayers()
 
         let insideRect = rect.insetBy(
-            dx: ringWidth,
-            dy: ringWidth
+            dx: ringWidth / 2,
+            dy: ringWidth / 2
         )
         let circlePath = UIBezierPath(ovalIn: insideRect)
         backgroundMask.path = circlePath.cgPath
@@ -52,5 +65,65 @@ internal class AndesCircularProgressBar: UIView {
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
         progressLayer.strokeColor = color?.cgColor
+    }
+
+    func startIndeterminateAnimation() {
+        self.animateRotation()
+        self.animateStroke()
+    }
+
+    func stopAnimation() {
+        self.layer.removeAllAnimations()
+    }
+
+    private func animateStroke() {
+
+        let strokeAnimationMidDuration = strokeAnimationDuration / 2
+
+        let beginAnimation = AndesStrokeAnimation(
+            type: .end,
+            fromValue: 0.0,
+            toValue: 0.75,
+            duration: strokeAnimationMidDuration
+        )
+
+        let midAnimation = AndesStrokeAnimation(
+            type: .start,
+            beginTime: 0.75,
+            fromValue: 0.0,
+            toValue: 0.97,
+            duration: strokeAnimationMidDuration
+        )
+
+        let endAnimation = AndesStrokeAnimation(
+            type: .end,
+            beginTime: 0.75,
+            fromValue: 0.75,
+            toValue: 1,
+            duration: strokeAnimationMidDuration
+        )
+
+        let strokeAnimationGroup = CAAnimationGroup()
+        strokeAnimationGroup.duration = strokeAnimationDuration
+        strokeAnimationGroup.repeatDuration = .infinity
+        strokeAnimationGroup.animations = [
+            beginAnimation,
+            midAnimation,
+            endAnimation
+        ]
+
+        backgroundMask.add(strokeAnimationGroup, forKey: nil)
+    }
+
+    private func animateRotation() {
+        let rotationAnimation = AndesRotationAnimation(
+            direction: .z,
+            fromValue: 0,
+            toValue: CGFloat.pi * 2,
+            duration: rotationAnimationDuration,
+            repeatCount: .infinity
+        )
+
+        self.layer.add(rotationAnimation, forKey: nil)
     }
 }

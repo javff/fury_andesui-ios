@@ -27,7 +27,10 @@ class AndesProgressIndicatorViewDefault: AndesProgressIndicatorAbstractView {
         super.updateView()
         guard let size = config.size else { return }
         self.containerViewHeightConstraint.constant = size.height
-        self.containerView.backgroundColor = config.tint
+        self.containerView.ringWidth = size.strokeWidth
+        self.containerView.color = config.tint
+        self.containerView.backgroundColor = .clear
+        self.containerView.progress = 1
+        self.containerView.startIndeterminateAnimation()
     }
-
 }

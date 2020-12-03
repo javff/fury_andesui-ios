@@ -8,11 +8,9 @@
 import Foundation
 
 /**
- The AndesButtonSizeProtocol provides the differents attributes that define the size of the button, these can be constants or calculated
+ The AndesProgressIndicatorSizeProtocol provides the differents attributes that define the size of the Indicator, these can be constants or calculated
  */
 internal protocol AndesProgressIndicatorSizeProtocol {
-
-    var font: UIFont { get }
+    var strokeWidth: CGFloat { get }
     var height: CGFloat { get }
-    var padding: CGFloat { get }
 }
