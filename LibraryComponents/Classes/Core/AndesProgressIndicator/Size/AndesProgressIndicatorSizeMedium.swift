@@ -8,7 +8,7 @@
 import Foundation
 
 internal struct AndesProgressIndicatorSizeMedium: AndesProgressIndicatorSizeProtocol {
-    var textSpacing: CGFloat = 20
+    var textSpacing: CGFloat = 16
     var strokeWidth: CGFloat = 3
     var height: CGFloat = 32
 

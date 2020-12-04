@@ -130,7 +130,7 @@ internal class AndesCircularProgressBar: UIView {
             endAnimation
         ]
 
-        backgroundMask.add(strokeAnimationGroup, forKey: nil)
+        backgroundMask.add(strokeAnimationGroup, forKey: "startAnimation")
     }
 
     private func animateRotation() {
@@ -142,6 +142,6 @@ internal class AndesCircularProgressBar: UIView {
             repeatCount: .infinity
         )
 
-        self.layer.add(rotationAnimation, forKey: nil)
+        self.layer.add(rotationAnimation, forKey: "rotateAnimation")
     }
 }

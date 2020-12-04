@@ -127,6 +127,7 @@
 		E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */; };
 		E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */; };
 		E2C0157F2575D467001B89C3 /* ProgressIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */; };
+		E2C015BD2579991E001B89C3 /* AndesProgressIndicatorIndeterminateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015BC2579991D001B89C3 /* AndesProgressIndicatorIndeterminateTest.swift */; };
 		E615508A23D619E300417B5F /* AndesButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E615508823D6196C00417B5F /* AndesButtonTests.swift */; };
 		E662DEB1254B300900A86D10 /* BottomSheetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E662DEB0254B300900A86D10 /* BottomSheetRouter.swift */; };
 		E662DEB3254B305100A86D10 /* BottomSheetSwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E662DEB2254B305100A86D10 /* BottomSheetSwiftExampleViewController.swift */; };
@@ -324,6 +325,7 @@
 		E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorRouter.swift; sourceTree = "<group>"; };
 		E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorViewController.swift; sourceTree = "<group>"; };
 		E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorViewController.xib; sourceTree = "<group>"; };
+		E2C015BC2579991D001B89C3 /* AndesProgressIndicatorIndeterminateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndesProgressIndicatorIndeterminateTest.swift; sourceTree = "<group>"; };
 		E3E9B26B74F98D6773C98C88 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E615508823D6196C00417B5F /* AndesButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndesButtonTests.swift; sourceTree = "<group>"; };
 		E61E8ED6239E9A7A00F85A8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -565,6 +567,7 @@
 				CEB95875252BC78500C74F01 /* TextFieldsCodeTests */,
 				9C592C082450A6980038785E /* TextFieldTests */,
 				9CE112ED23D103080017B770 /* AndesButtonTests.swift */,
+				E2C015BC2579991D001B89C3 /* AndesProgressIndicatorIndeterminateTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1449,6 +1452,7 @@
 				6D877420252CF03500C74B83 /* AndesTagChoiceTests.swift in Sources */,
 				034D60132563E6AB00978518 /* AndesDatePickerAbstractViewTests.swift in Sources */,
 				6DBB66002436423200FA9581 /* AndesTextFieldTests.swift in Sources */,
+				E2C015BD2579991E001B89C3 /* AndesProgressIndicatorIndeterminateTest.swift in Sources */,
 				CEB95878252BC8CD00C74F01 /* AndesTextFieldCodeTests.swift in Sources */,
 				80D6914424E1C024002CF3BC /* AndesCoachmarkHighlightInteractorTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* AndesStyleSheetTests.swift in Sources */,
