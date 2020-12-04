@@ -76,18 +76,14 @@ internal class AndesCircularProgressBar: UIView {
         switch type {
         case .infinity:
             self.startInfiniteAnimation()
-        case let .madeProgress(progress):
-            self.startMadeProgressAnimation(progress)
+        case .madeProgress:
+            break
         }
     }
 
     private func startInfiniteAnimation() {
         self.animateRotation()
         self.animateStroke()
-    }
-
-    private func startMadeProgressAnimation(_ progress: CGFloat) {
-        //TODO: - implement madeProgress animation //
     }
 
     func stopAnimation() {
@@ -135,7 +131,7 @@ internal class AndesCircularProgressBar: UIView {
 
     private func animateRotation() {
         let rotationAnimation = AndesRotationAnimation(
-            direction: .z,
+            direction: .axisZ,
             fromValue: 0,
             toValue: CGFloat.pi * 2,
             duration: rotationAnimationDuration,

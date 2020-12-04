@@ -10,7 +10,7 @@
 import Foundation
 
 @objc public class AndesProgressIndicatorIndeterminate: UIView {
-   
+
     internal var contentView: AndesProgressIndicatorView!
 
     @objc public var size: AndesProgressIndicatorSize = .large {
@@ -58,11 +58,11 @@ import Foundation
         self.label = label
         setup()
     }
-    
+
     @objc public func startAnimation() {
         self.contentView.startAnimation(type: .infinity)
     }
-    
+
     @objc public func stopAnimation() {
         self.contentView.stopAnimation()
     }
@@ -117,11 +117,11 @@ import Foundation
 public extension AndesProgressIndicatorIndeterminate {
     @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'Size' instead.")
     @IBInspectable var ibSize: String {
-        set(val) {
-            self.size = AndesProgressIndicatorSize.checkValidEnum(property: "IB size", key: val)
-        }
         get {
             return self.size.toString()
+        }
+        set(val) {
+            self.size = AndesProgressIndicatorSize.checkValidEnum(property: "IB size", key: val)
         }
     }
 }

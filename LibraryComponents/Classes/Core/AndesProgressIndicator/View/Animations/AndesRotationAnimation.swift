@@ -10,7 +10,18 @@ import UIKit
 class AndesRotationAnimation: CABasicAnimation {
 
     enum Direction: String {
-        case x, y, z
+        case axisX, axisY, axisZ
+        
+        func getAxisIdentifier() -> String {
+            switch self {
+            case .axisX:
+                return "x"
+            case .axisY:
+                return "y"
+            case .axisZ:
+                return "z"
+            }
+        }
     }
 
     override init() {
@@ -26,7 +37,7 @@ class AndesRotationAnimation: CABasicAnimation {
     ) {
 
         super.init()
-        self.keyPath = "transform.rotation.\(direction.rawValue)"
+        self.keyPath = "transform.rotation.\(direction.getAxisIdentifier())"
         self.fromValue = fromValue
         self.toValue = toValue
         self.duration = duration
