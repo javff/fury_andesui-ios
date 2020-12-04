@@ -44,32 +44,30 @@ internal class AndesCircularProgressBar: UIView {
     }
 
     private func setupLayers() {
-        backgroundMask.lineWidth = ringWidth
         backgroundMask.fillColor = nil
         backgroundMask.strokeColor = UIColor.blue.cgColor
         layer.mask = backgroundMask
 
-        progressLayer.lineWidth = ringWidth
         progressLayer.fillColor = nil
         layer.addSublayer(progressLayer)
         layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
     }
 
     override func draw(_ rect: CGRect) {
-        setupLayers()
-
         let insideRect = rect.insetBy(
             dx: ringWidth / 2,
             dy: ringWidth / 2
         )
         let circlePath = UIBezierPath(ovalIn: insideRect)
         backgroundMask.path = circlePath.cgPath
+        backgroundMask.lineWidth = ringWidth
 
         progressLayer.path = circlePath.cgPath
         progressLayer.lineCap = .round
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
         progressLayer.strokeColor = color?.cgColor
+        progressLayer.lineWidth = ringWidth
     }
 
     func startAnimation(_ type: AnimationType) {

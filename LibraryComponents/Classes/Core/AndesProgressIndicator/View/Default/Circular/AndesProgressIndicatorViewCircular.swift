@@ -20,6 +20,6 @@ class AndesProgressIndicatorViewCircular: AndesProgressIndicatorAbstractView {
 
     override func updateView() {
         super.updateView()
-        self.containerView.progress = progressValue
+        self.circularProgressBar.progress = progressValue
     }
 }

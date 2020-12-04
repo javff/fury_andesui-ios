@@ -15,7 +15,7 @@ class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var containerViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var containerView: AndesCircularProgressBar!
+    @IBOutlet weak var circularProgressBar: AndesCircularProgressBar!
 
     var config: AndesProgressIndicatorViewConfig
     init(withConfig config: AndesProgressIndicatorViewConfig) {
@@ -52,12 +52,12 @@ class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
         updateView()
     }
 
-    /// Override this method on each Badge View to setup its unique components
+    /// Override this method on each ProgressIndicator View to setup its unique components
     func updateView() {
         guard let size = config.size else { return }
         self.containerViewHeightConstraint.constant = size.height
-        self.containerView.ringWidth = size.strokeWidth
-        self.containerView.color = config.tint
+        self.circularProgressBar.ringWidth = size.strokeWidth
+        self.circularProgressBar.color = config.tint
         self.textLabel.text = config.label
         self.textLabel.textColor = config.textColor
         self.textLabel.font = size.textFont
@@ -66,10 +66,10 @@ class AndesProgressIndicatorAbstractView: UIView, AndesProgressIndicatorView {
     }
 
     func startAnimation(type: AndesCircularProgressBar.AnimationType) {
-        self.containerView.startAnimation(type)
+        self.circularProgressBar.startAnimation(type)
     }
 
     func stopAnimation() {
-        self.containerView.stopAnimation()
+        self.circularProgressBar.stopAnimation()
     }
 }

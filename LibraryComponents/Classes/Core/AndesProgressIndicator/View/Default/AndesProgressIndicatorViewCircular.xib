@@ -9,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesProgressIndicatorAbstractView" customModule="AndesUI">
             <connections>
+                <outlet property="circularProgressBar" destination="Bhg-eP-9Nc" id="lKM-xw-zyF"/>
                 <outlet property="componentView" destination="iN0-l3-epB" id="pJc-XA-8DK"/>
-                <outlet property="containerView" destination="Bhg-eP-9Nc" id="Df5-FI-ZTM"/>
                 <outlet property="containerViewHeightConstraint" destination="FKk-BF-3wc" id="iPq-fw-IL2"/>
                 <outlet property="stackView" destination="U9J-Tx-UIw" id="qt4-t2-tat"/>
                 <outlet property="textLabel" destination="mP6-5r-HVe" id="EDS-2D-paA"/>

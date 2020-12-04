@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- The AndesButtonSize contains the differents sizes that a button supports
+ The AndesProgressIndicatorSize contains the different sizes that a button supports
  */
 @objc public enum AndesProgressIndicatorSize: Int, AndesEnumStringConvertible {
     case large

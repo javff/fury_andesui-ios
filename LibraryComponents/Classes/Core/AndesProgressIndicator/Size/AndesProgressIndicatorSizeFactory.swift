@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- The responsability of the factory is to provide the right size by providing the AndesButtonSize
+ The responsability of the factory is to provide the right size by providing the AndesProgressIndicatorSize
  */
 class AndesProgressIndicatorSizeFactory {
     static func provideStyle(key: AndesProgressIndicatorSize) -> AndesProgressIndicatorSizeProtocol {
