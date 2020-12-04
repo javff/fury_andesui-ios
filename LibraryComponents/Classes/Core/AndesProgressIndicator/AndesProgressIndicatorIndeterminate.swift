@@ -90,24 +90,22 @@ import Foundation
     }
 
     private func updateContentView() {
-        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: self.size)
         let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(
             textColor: self.textColor,
             tint: self.tint,
             label: self.label,
-            size: size
+            size: self.size
         )
         contentView.update(withConfig: config)
     }
 
     /// Should return a view depending on which modifier is selected
     private func provideView() -> AndesProgressIndicatorView {
-        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: self.size)
         let config = AndesProgressIndicatorViewConfigFactory.provideInternalConfig(
             textColor: self.textColor,
             tint: self.tint,
             label: self.label,
-            size: size
+            size: self.size
         )
         return AndesProgressIndicatorViewCircular(withConfig: config)
     }

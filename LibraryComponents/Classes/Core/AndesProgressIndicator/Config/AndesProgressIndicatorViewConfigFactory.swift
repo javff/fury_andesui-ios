@@ -14,7 +14,9 @@ internal class AndesProgressIndicatorViewConfigFactory {
         textColor: UIColor?,
         tint: UIColor?,
         label: String?,
-        size: AndesProgressIndicatorSizeProtocol?) -> AndesProgressIndicatorViewConfig {
+        size: AndesProgressIndicatorSize) -> AndesProgressIndicatorViewConfig {
+
+        let size = AndesProgressIndicatorSizeFactory.provideStyle(key: size)
 
         let config = AndesProgressIndicatorViewConfig(
             textColor: textColor,
