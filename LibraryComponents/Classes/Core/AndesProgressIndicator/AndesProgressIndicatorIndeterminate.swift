@@ -13,24 +13,28 @@ import Foundation
 
     internal var contentView: AndesProgressIndicatorView!
 
+    /// enum representing the size of the component.
     @objc public var size: AndesProgressIndicatorSize = .large {
         didSet {
             updateContentView()
         }
     }
 
+    /// color of the component.
     @IBInspectable public var tint: UIColor? {
         didSet {
             updateContentView()
         }
     }
 
+    /// text color of the component. This attribute is optional.
     @IBInspectable public var textColor: UIColor? {
         didSet {
             updateContentView()
         }
     }
 
+    /// text content. This attribute is optional.
     @IBInspectable public var label: String? {
         didSet {
             updateContentView()
@@ -47,6 +51,12 @@ import Foundation
         setup()
     }
 
+    /// is a component that gives feedback on an action with an indeterminate duration
+    /// - Parameters:
+    ///   - size: enum representing the size of the component.
+    ///   - tint: color of the component.
+    ///   - textColor: text color. This attribute is optional.
+    ///   - label: text content. This attribute is optional.
     @objc public init(size: AndesProgressIndicatorSize,
                       tint: UIColor,
                       textColor: UIColor? = nil,
@@ -59,10 +69,12 @@ import Foundation
         setup()
     }
 
+    /// Starts the component animation. This animation indicates that a loading process has started.
     @objc public func startAnimation() {
         self.contentView.startAnimation(type: .infinity)
     }
 
+    /// Stop the component animation. Remove all animations in this component.
     @objc public func stopAnimation() {
         self.contentView.stopAnimation()
     }
