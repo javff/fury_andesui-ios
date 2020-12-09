@@ -1,6 +1,9 @@
-# v3.17.0
+# Unpublished
 ### 🚀 Features
 - AndesProgressIndicatorIndeterminate: New component AndesProgressIndicator| Authors: [@javff](https://github.com/javff)
+
+### 🛠 Bug fixes
+- AndestextField: Fix icon component right and left interaction | Authors: [@joalonsopint](https://github.com/joalonsopint)
 
 # v3.16.0
 ### 🚀 Features

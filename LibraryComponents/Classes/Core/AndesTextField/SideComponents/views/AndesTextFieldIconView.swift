@@ -37,5 +37,6 @@ class AndesTextFieldIconView: UIView {
         imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.addSubview(imageView)
         imageView.pinToSuperview(top: 0, left: 12, bottom: 0, right: 12)
+        self.isUserInteractionEnabled = false
     }
 }
