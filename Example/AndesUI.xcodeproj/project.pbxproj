@@ -124,6 +124,8 @@
 		CEA2960925128CAB00FB625F /* TextFieldsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2960825128CAB00FB625F /* TextFieldsCodeViewController.swift */; };
 		CEA2960B25128DF900FB625F /* TextFieldsCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA2960A25128DF900FB625F /* TextFieldsCodeViewController.xib */; };
 		CEB95878252BC8CD00C74F01 /* AndesTextFieldCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB95876252BC7B000C74F01 /* AndesTextFieldCodeTests.swift */; };
+		E230FDC12580F71800D6ED78 /* ProgressIndicatorObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */; };
+		E230FDC22580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */; };
 		E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */; };
 		E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */; };
 		E2C0157F2575D467001B89C3 /* ProgressIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */; };
@@ -322,6 +324,9 @@
 		CEA2960A25128DF900FB625F /* TextFieldsCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldsCodeViewController.xib; sourceTree = "<group>"; };
 		CEB95876252BC7B000C74F01 /* AndesTextFieldCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndesTextFieldCodeTests.swift; sourceTree = "<group>"; };
 		D91DB4D401500717C545A996 /* Pods_AndesUI_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AndesUI_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E230FDBE2580F71800D6ED78 /* ProgressIndicatorObjcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressIndicatorObjcViewController.h; sourceTree = "<group>"; };
+		E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressIndicatorObjcViewController.m; sourceTree = "<group>"; };
+		E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorObjcViewController.xib; sourceTree = "<group>"; };
 		E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorRouter.swift; sourceTree = "<group>"; };
 		E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorViewController.swift; sourceTree = "<group>"; };
 		E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorViewController.xib; sourceTree = "<group>"; };
@@ -991,6 +996,9 @@
 			children = (
 				E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */,
 				E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */,
+				E230FDBE2580F71800D6ED78 /* ProgressIndicatorObjcViewController.h */,
+				E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */,
+				E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1203,6 +1211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E230FDC22580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib in Resources */,
 				80B22F1D24DC5C3700FE9197 /* CoachmarkViewController.xib in Resources */,
 				F09C4F072551BC99005621F8 /* ListObjcViewController.xib in Resources */,
 				F09C4F622551BDB7005621F8 /* HomeViewController.xib in Resources */,
@@ -1417,6 +1426,7 @@
 				03BE93FC256432C8004F3BBD /* DatePickerObjCViewController.m in Sources */,
 				6D8774192523D0A800C74B83 /* TagChoiceObjCViewController.m in Sources */,
 				F8D7CB1A24A388D7003D5294 /* AndesCheckboxInitViewController.swift in Sources */,
+				E230FDC12580F71800D6ED78 /* ProgressIndicatorObjcViewController.m in Sources */,
 				F08720892559D42D00D54768 /* Randoms.swift in Sources */,
 				E662DEB6254B308D00A86D10 /* BottomSheetObjectiveCExampleViewController.m in Sources */,
 				86A1E3042481599500B59D1D /* TagRouter.swift in Sources */,

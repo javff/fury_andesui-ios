@@ -19,3 +19,4 @@
 #import "DatePickerObjCViewController.h"
 #import "BottomSheetObjectiveCExampleViewController.h"
 #import "ListObjcViewController.h"
+#import "ProgressIndicatorObjcViewController.h"

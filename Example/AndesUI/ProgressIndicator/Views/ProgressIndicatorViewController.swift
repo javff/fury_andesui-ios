@@ -21,7 +21,20 @@ class ProgressIndicatorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupObjcCase()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startAnimation()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopAnimation()
+    }
+
+    private func startAnimation() {
         progressIndicatorLargeWithText.startAnimation()
         progressIndicatorSmallWithText.startAnimation()
         progressIndicatorMediumWithText.startAnimation()
@@ -29,7 +42,30 @@ class ProgressIndicatorViewController: UIViewController {
         progressIndicatorLargeWithoutText.startAnimation()
         progressIndicatorSmallWithoutText.startAnimation()
         progressIndicatorMediumWithoutText.startAnimation()
-
     }
 
+    private func stopAnimation() {
+        progressIndicatorLargeWithText.stopAnimation()
+        progressIndicatorSmallWithText.stopAnimation()
+        progressIndicatorMediumWithText.stopAnimation()
+
+        progressIndicatorLargeWithoutText.stopAnimation()
+        progressIndicatorSmallWithoutText.stopAnimation()
+        progressIndicatorMediumWithoutText.stopAnimation()
+    }
+    private func setupObjcCase() {
+        let rightButton = UIBarButtonItem(
+            image: nil,
+            style: .plain,
+            target: self,
+            action: #selector(objcCasesButtonTapped)
+        )
+        rightButton.title = "Objc Example"
+        navigationItem.rightBarButtonItem = rightButton
+    }
+
+    @objc func objcCasesButtonTapped() {
+        let controller = ProgressIndicatorObjcViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
