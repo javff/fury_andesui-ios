@@ -93,7 +93,7 @@ class AndesProgressIndicatorIndeterminateTest: QuickSpec {
                     progressIndicator.startAnimation()
 
                     // then
-                    let numberOfanimations = contentView.circularProgressBar.layer.animationKeys()?.count ?? 0
+                    let numberOfanimations = contentView.circularProgressBar.layer.mask?.animationKeys()?.count ?? 0
 
                     let containAnimations = numberOfanimations > 0
                     expect(containAnimations).to(beTrue())
@@ -113,7 +113,7 @@ class AndesProgressIndicatorIndeterminateTest: QuickSpec {
                     progressIndicator.stopAnimation()
 
                     // then
-                    let numberOfanimations = contentView.circularProgressBar.layer.animationKeys()?.count ?? 0
+                    let numberOfanimations = contentView.circularProgressBar.layer.mask?.animationKeys()?.count ?? 0
 
                     let containAnimations = numberOfanimations > 0
                     expect(containAnimations).to(beFalse())

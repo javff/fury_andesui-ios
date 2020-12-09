@@ -45,7 +45,7 @@ internal class AndesCircularProgressBar: UIView {
 
     private func setupLayers() {
         backgroundMask.fillColor = nil
-        backgroundMask.strokeColor = UIColor.blue.cgColor
+        backgroundMask.strokeColor = UIColor.gray.cgColor
         layer.mask = backgroundMask
 
         progressLayer.fillColor = nil
@@ -86,6 +86,8 @@ internal class AndesCircularProgressBar: UIView {
 
     func stopAnimation() {
         self.layer.removeAllAnimations()
+        self.progressLayer.removeAllAnimations()
+        self.backgroundMask.removeAllAnimations()
     }
 
     private func animateStroke() {
