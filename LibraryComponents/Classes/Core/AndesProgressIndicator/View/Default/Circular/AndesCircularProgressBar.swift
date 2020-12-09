@@ -61,6 +61,7 @@ internal class AndesCircularProgressBar: UIView {
         let circlePath = UIBezierPath(ovalIn: insideRect)
         backgroundMask.path = circlePath.cgPath
         backgroundMask.lineWidth = ringWidth
+        backgroundMask.lineCap = .round
 
         progressLayer.path = circlePath.cgPath
         progressLayer.lineCap = .round
