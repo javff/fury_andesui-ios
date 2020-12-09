@@ -1,3 +1,7 @@
+# v3.17.0
+### 🚀 Features
+- AndesProgressIndicatorIndeterminate: New component AndesProgressIndicator| Authors: [@javff](https://github.com/javff)
+
 # v3.16.0
 ### 🚀 Features
 - AndesCard: New property to make the padding independent in the body | Authors: [@federiconosmor](https://github.com/federiconosmor)
