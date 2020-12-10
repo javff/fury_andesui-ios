@@ -18,4 +18,6 @@ internal struct AndesSnackbarButtonHierarchy: AndesButtonHierarchyProtocol {
     public var disableColor: UIColor = .clear
 
     public var fontColor: UIColor = .white
+
+    var spinnerTintColor: UIColor?
 }

@@ -16,4 +16,6 @@ internal protocol AndesButtonSizeProtocol {
     var height: CGFloat { get }
     var borderRadius: CGFloat { get }
     var padding: CGFloat { get }
+
+    var spinnerSize: AndesProgressIndicatorSize? { get }
 }

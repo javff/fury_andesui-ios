@@ -14,4 +14,6 @@ internal protocol AndesButtonHierarchyProtocol {
     var disableColor: UIColor { get }
 
     var fontColor: UIColor { get }
+
+    var spinnerTintColor: UIColor? { get }
 }

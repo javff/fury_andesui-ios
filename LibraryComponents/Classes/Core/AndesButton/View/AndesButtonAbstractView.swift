@@ -24,6 +24,58 @@ internal class AndesButtonAbstractView: UIControl, AndesButtonView {
            }
     }
 
+    internal enum SpinnerState {
+        case enabled
+        case disabled
+
+        mutating func changeState() {
+            switch self {
+            case .enabled:
+                self = .disabled
+            case .disabled:
+                self = .enabled
+            }
+        }
+    }
+
+    private var spinnerState: SpinnerState = .disabled {
+        didSet {
+            self.updateSpinnerState()
+        }
+    }
+
+    private let spinnerTransitionDuration: TimeInterval = 0.2
+    private let spinnerTransitionPosition: CGFloat = 36
+
+    lazy var spinner: AndesProgressIndicatorIndeterminate = {
+        let color = config.spinnerTintColor ?? .clear
+        let size = config.spinnerSize ?? .xSmall
+        let spinner = AndesProgressIndicatorIndeterminate(size: size, tint: color)
+        addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.topAnchor.constraint(equalTo: topAnchor),
+            spinner.trailingAnchor.constraint(equalTo: trailingAnchor),
+            spinner.leadingAnchor.constraint(equalTo: leadingAnchor),
+            spinner.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        return spinner
+    }()
+
+    var contentView: UIView {
+        return buttonView.subviews.first ?? label
+    }
+
+    internal func startSpinnerAnimation() {
+        guard spinnerState != .enabled else { return }
+        spinnerState.changeState()
+    }
+
+    internal func stopSpinnerAnimation() {
+        guard spinnerState != .disabled else { return }
+        spinnerState.changeState()
+    }
+
     internal init(config: AndesButtonViewConfig) {
         self.config = config
         self.backgroundLayer = CALayer()
@@ -107,5 +159,69 @@ internal class AndesButtonHelper {
         paragraphStyle.lineBreakMode = .byTruncatingTail
 
         return paragraphStyle
+    }
+}
+
+// MARK: - Spinner methods
+extension AndesButtonAbstractView {
+
+    private func updateSpinnerState() {
+        switch spinnerState {
+        case .enabled:
+           showSpinner()
+        case .disabled:
+            hideSpinner()
+        }
+    }
+
+    private func showSpinner() {
+        spinner.startAnimation()
+        appearSpinnerAnimation()
+    }
+
+    private func hideSpinner() {
+        dissapearSpinnerAnimation {
+            self.spinner.stopAnimation()
+        }
+    }
+
+    private func appearSpinnerAnimation() {
+        self.clipsToBounds = true
+        self.spinner.alpha = 0
+        contentView.alpha = 1
+        self.spinner.transform = CGAffineTransform(translationX: 0, y: self.spinnerTransitionPosition)
+        contentView.transform = CGAffineTransform(translationX: 0, y: 0)
+
+        UIView.animate(
+            withDuration: spinnerTransitionDuration,
+            delay: 0,
+            options: [.curveEaseIn]) {
+            self.contentView.transform = CGAffineTransform(translationX: 0, y: -self.spinnerTransitionPosition)
+            self.spinner.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.spinner.alpha = 1
+            self.contentView.alpha = 0
+        }
+    }
+
+    private func dissapearSpinnerAnimation(completion: (() -> Void)? = nil) {
+        self.clipsToBounds = true
+        self.spinner.alpha = 1
+        contentView.alpha = 0
+        contentView.transform = CGAffineTransform(translationX: 0, y: self.spinnerTransitionPosition)
+        self.spinner.transform = CGAffineTransform(translationX: 0, y: 0)
+
+        UIView.animate(
+            withDuration: spinnerTransitionDuration,
+            delay: 0,
+            options: [.curveEaseIn]) {
+            self.spinner.transform = CGAffineTransform(translationX: 0, y: -self.spinnerTransitionPosition)
+            self.contentView.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.spinner.alpha = 0
+            self.contentView.alpha = 1
+        }
+
+        completion: { (_) in
+            completion?()
+        }
     }
 }

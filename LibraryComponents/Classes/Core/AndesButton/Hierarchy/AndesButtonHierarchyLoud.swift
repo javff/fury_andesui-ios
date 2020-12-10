@@ -22,4 +22,6 @@ internal struct AndesButtonHierarchyLoud: AndesButtonHierarchyProtocol {
 
     public var fontColor: UIColor = AndesStyleSheetManager.styleSheet.textColorWhite
 
+    var spinnerTintColor: UIColor? = AndesStyleSheetManager.styleSheet.textColorWhite
+
 }

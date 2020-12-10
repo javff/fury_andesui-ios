@@ -17,4 +17,6 @@ internal struct AndesButtonSizeSmall: AndesButtonSizeProtocol {
 
     public var padding: CGFloat = 8
 
+    public var spinnerSize: AndesProgressIndicatorSize? = .xSmall
+
 }

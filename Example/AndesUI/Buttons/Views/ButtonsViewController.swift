@@ -35,13 +35,63 @@ class ButtonsViewController: UIViewController {
     @IBOutlet weak var smallQuietAndesButton: AndesButton!
     @IBOutlet weak var smallTransparentAndesButton: AndesButton!
 
+    @IBOutlet var largeWithSpinnerAndesButton: [AndesButton] = []
+    @IBOutlet var mediumWithSpinnerAndesButton: [AndesButton] = []
+    @IBOutlet var smallWithSpinnerAndesButton: [AndesButton] = []
+
+    @IBOutlet weak var largeWithIconSpinner: AndesButton!
+
+    var rightBarButton: UIBarButtonItem!
+
+    var spinnersState: SpinnerState = .disabled {
+        didSet {
+            self.changeSpinnerState(state: spinnersState)
+        }
+    }
+
+    enum SpinnerState {
+        case enabled
+        case disabled
+
+        mutating func changeSate() {
+            let counterPart: SpinnerState = self == .enabled ? .disabled : .enabled
+            self = counterPart
+        }
+
+        func getTransitionStateName() -> String {
+            switch self {
+            case .enabled:
+                return "Disabled Spinner"
+            case .disabled:
+                return "Enabled Spinner"
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupSpinnerCases()
+        spinnersState = .disabled
+    }
+
+    private func setupSpinnerCases() {
+        rightBarButton = UIBarButtonItem(
+            image: nil,
+            style: .plain,
+            target: self,
+            action: #selector(changeStateButtonTapped)
+        )
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
+
+    @objc func changeStateButtonTapped() {
+        spinnersState.changeSate()
     }
 
     func setupSizes() {
         // Large medium small
+        largeWithIconSpinner.setLargeSizeWithIcon(AndesButtonIcon(icon: #imageLiteral(resourceName: "clip"), orientation: .left))
         largeLoudLeftImageAndesButton.setLargeSizeWithIcon(AndesButtonIcon(icon: #imageLiteral(resourceName: "clip"), orientation: .left))
         largeLoudRightImageAndesButton.setLargeSizeWithIcon(AndesButtonIcon(icon: #imageLiteral(resourceName: "clip"), orientation: .right))
 
@@ -61,5 +111,51 @@ class ButtonsViewController: UIViewController {
         disabledAndesButton.isEnabled = false
         setTexts()
         setupSizes()
+    }
+
+    func changeSpinnerState(state: SpinnerState) {
+
+        rightBarButton.title = state.getTransitionStateName()
+
+        switch state {
+        case .enabled:
+            self.startSpinners()
+        case .disabled:
+            self.stopSpinners()
+        }
+    }
+
+    func startSpinners() {
+
+        largeWithIconSpinner.startSpinner()
+
+        largeWithSpinnerAndesButton.forEach {
+            $0.startSpinner()
+        }
+
+        mediumWithSpinnerAndesButton.forEach {
+            $0.startSpinner()
+        }
+
+        smallWithSpinnerAndesButton.forEach {
+            $0.startSpinner()
+        }
+    }
+
+    func stopSpinners() {
+
+        largeWithIconSpinner.stopSpinner()
+
+        largeWithSpinnerAndesButton.forEach {
+            $0.stopSpinner()
+        }
+
+        mediumWithSpinnerAndesButton.forEach {
+            $0.stopSpinner()
+        }
+
+        smallWithSpinnerAndesButton.forEach {
+            $0.stopSpinner()
+        }
     }
 }

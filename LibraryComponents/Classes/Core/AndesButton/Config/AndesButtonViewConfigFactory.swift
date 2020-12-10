@@ -37,7 +37,9 @@ internal class AndesButtonViewConfigFactory {
                                                padding: size.padding,
                                                icon: icon?.icon,
                                                iconColor: hierarchy.fontColor,
-                                               iconDisableColor: AndesStyleSheetManager.styleSheet.textColorDisabled)
+                                               iconDisableColor: AndesStyleSheetManager.styleSheet.textColorDisabled,
+                                               spinnerTintColor: hierarchy.spinnerTintColor,
+                                               spinnerSize: size.spinnerSize)
 
         return viewConfig
     }

@@ -18,4 +18,8 @@ internal protocol AndesButtonView: UIControl {
     func touchDown()
 
     func setText(_ text: String)
+
+    func startSpinnerAnimation()
+    func stopSpinnerAnimation()
+
 }
