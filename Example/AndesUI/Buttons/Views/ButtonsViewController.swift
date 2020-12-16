@@ -72,7 +72,7 @@ class ButtonsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupSpinnerCases()
-        spinnersState = .disabled
+        spinnersState = .enabled
     }
 
     private func setupSpinnerCases() {

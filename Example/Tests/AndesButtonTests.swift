@@ -188,6 +188,36 @@ class AndesButtonTests: QuickSpec {
                 }
             }
         }
+
+        describe("AndesButton spinner state") {
+            context("AndesButton StartSpinner") {
+                it("Should set false userInteractionEnabled") {
+                    //Given
+                    let title = "test"
+                    let button = AndesButton(text: title, hierarchy: .loud, size: .large)
+
+                    //When
+                    button.startSpinner()
+
+                    //Then
+                    expect(button.isUserInteractionEnabled).to(beFalse())
+                }
+            }
+
+            context("AndesButton StopSpinner") {
+                it("Should set true userInteractionEnabled") {
+                    //Given
+                    let title = "test"
+                    let button = AndesButton(text: title, hierarchy: .loud, size: .large)
+
+                    //When
+                    button.stopSpinner()
+
+                    //Then
+                    expect(button.isUserInteractionEnabled).to(beTrue())
+                }
+            }
+        }
     }
 
     private func compareColors(firstColor: CGColor, secondColor: CGColor) -> Bool {
