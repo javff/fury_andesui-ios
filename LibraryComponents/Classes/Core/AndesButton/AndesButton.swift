@@ -92,11 +92,17 @@ import UIKit
         setup()
     }
 
+    /**
+     Start the spinner animation if needed and disable user interaction
+     */
     @objc public func startSpinner() {
         isUserInteractionEnabled = false
         view.startSpinnerAnimation()
     }
 
+    /**
+     Stop the spinner animation if needed and enable user interaction
+     */
     @objc public func stopSpinner() {
         isUserInteractionEnabled = true
         view.stopSpinnerAnimation()
