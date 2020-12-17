@@ -16,5 +16,5 @@ internal struct AndesSnackbarButtonSize: AndesButtonSizeProtocol {
 
     public var padding: CGFloat = 8
 
-    var spinnerSize: AndesProgressIndicatorSize?
+    var spinnerSize: AndesProgressIndicatorSize = .medium
 }

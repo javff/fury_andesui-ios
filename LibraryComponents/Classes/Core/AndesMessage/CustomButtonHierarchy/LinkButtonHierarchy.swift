@@ -19,7 +19,7 @@ struct LinkMessageActionButtonHierarchy: AndesButtonHierarchyProtocol {
 
     public var fontColor: UIColor
 
-    var spinnerTintColor: UIColor?
+    var spinnerTintColor: UIColor = .clear
 
     init(textColor: UIColor, pressedColor: UIColor) {
         self.fontColor = textColor

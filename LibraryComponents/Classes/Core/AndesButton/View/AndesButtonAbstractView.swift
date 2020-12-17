@@ -48,8 +48,8 @@ internal class AndesButtonAbstractView: UIControl, AndesButtonView {
     private let spinnerTransitionPosition: CGFloat = 36
 
     lazy var spinner: AndesProgressIndicatorIndeterminate = {
-        let color = config.spinnerTintColor ?? .clear
-        let size = config.spinnerSize ?? .xSmall
+        let color = config.spinnerTintColor
+        let size = config.spinnerSize
         let spinner = AndesProgressIndicatorIndeterminate(size: size, tint: color)
         addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false

@@ -19,7 +19,7 @@ struct SecondaryMessageActionButtonHierarchy: AndesButtonHierarchyProtocol {
 
     public var fontColor: UIColor
 
-    public var spinnerTintColor: UIColor?
+    public var spinnerTintColor: UIColor = .clear
 
     init(textColor: UIColor, pressedColor: UIColor) {
         self.fontColor = textColor

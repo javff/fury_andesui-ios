@@ -29,6 +29,6 @@ internal struct AndesButtonViewConfig {
     var iconColor: UIColor?
     var iconDisableColor: UIColor?
 
-    var spinnerTintColor: UIColor?
-    var spinnerSize: AndesProgressIndicatorSize?
+    var spinnerTintColor: UIColor
+    var spinnerSize: AndesProgressIndicatorSize
 }

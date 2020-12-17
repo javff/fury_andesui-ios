@@ -19,5 +19,5 @@ internal struct AndesButtonHierarchyTransparent: AndesButtonHierarchyProtocol {
 
     public var fontColor: UIColor = AndesStyleSheetManager.styleSheet.accentColor
 
-    var spinnerTintColor: UIColor? = AndesStyleSheetManager.styleSheet.accentColor
+    var spinnerTintColor: UIColor = AndesStyleSheetManager.styleSheet.accentColor
 }
