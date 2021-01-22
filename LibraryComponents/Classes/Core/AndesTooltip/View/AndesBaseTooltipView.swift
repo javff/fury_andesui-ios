@@ -16,7 +16,6 @@ struct AndesBaseTooltipExternalConfig {
 private struct AndesBaseTooltipInternalConfig {
 
     struct Positioning {
-        let bubbleInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let contentInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let maxWidth = CGFloat(200)
      }
@@ -124,7 +123,7 @@ class AndesBaseTooltipView: UIView {
     var arrowPosition: AndesBaseTooltipArrowPosition = .bottom
 
     // MARK: - Lazy variables
-    lazy fileprivate var contentSize: CGSize = {
+    lazy var contentSize: CGSize = {
         let horizontalPriority = UILayoutPriority(750)
         let verticalPriority = UILayoutPriority(749)
         let targetWidth = self.internalConfig.positioning.maxWidth
@@ -136,12 +135,12 @@ class AndesBaseTooltipView: UIView {
         )
     }()
 
-    fileprivate lazy var tipViewSize: CGSize = { [unowned self] in
+    lazy var tipViewSize: CGSize = {
         let width = self.contentSize.width +
             self.internalConfig.positioning.contentInsets.left + self.internalConfig.positioning.contentInsets.right
 
-        let height = self.contentSize.height + self.internalConfig.positioning.contentInsets.top + self.internalConfig.positioning.contentInsets.bottom +
-            self.internalConfig.drawing.arrowHeight
+        let height = self.contentSize.height + self.internalConfig.positioning.contentInsets.top + self.internalConfig.positioning.contentInsets.bottom
+            //+self.internalConfig.drawing.arrowHeight
 
         return CGSize(width: width, height: height)
     }()
@@ -273,7 +272,7 @@ class AndesBaseTooltipView: UIView {
                 arrowTipXOrigin = abs(frame.x - refViewFrame.x) + refViewFrame.width / 2
             }
 
-            let yPosition = position == .bottom ? tipViewSize.height - internalConfig.positioning.bubbleInsets.bottom :  internalConfig.positioning.bubbleInsets.top
+            let yPosition = position == .bottom ? tipViewSize.height : 0
 
             return CGPoint(x: arrowTipXOrigin, y: yPosition)
 
@@ -285,7 +284,7 @@ class AndesBaseTooltipView: UIView {
                 arrowTipYOrigin = abs(frame.y - refViewFrame.y) + refViewFrame.height / 2
             }
 
-            let xPosition = arrowPosition == .left ? internalConfig.positioning.bubbleInsets.left : tipViewSize.width - internalConfig.positioning.bubbleInsets.right
+            let xPosition = arrowPosition == .left ? 0 : tipViewSize.width
 
             return CGPoint(x: xPosition, y: arrowTipYOrigin)
         }
@@ -445,19 +444,19 @@ class AndesBaseTooltipView: UIView {
         switch arrowPosition {
         case .bottom, .top:
 
-            bubbleWidth = tipViewSize.width - internalConfig.positioning.bubbleInsets.left - internalConfig.positioning.bubbleInsets.right
-            bubbleHeight = tipViewSize.height - internalConfig.positioning.bubbleInsets.top - internalConfig.positioning.bubbleInsets.bottom - internalConfig.drawing.arrowHeight
+            bubbleWidth = tipViewSize.width
+            bubbleHeight = tipViewSize.height - internalConfig.drawing.arrowHeight
 
-            bubbleXOrigin = internalConfig.positioning.bubbleInsets.left
-            bubbleYOrigin = arrowPosition == .bottom ? internalConfig.positioning.bubbleInsets.top : internalConfig.positioning.bubbleInsets.top + internalConfig.drawing.arrowHeight
+            bubbleXOrigin = 0
+            bubbleYOrigin = arrowPosition == .bottom ? 0 : internalConfig.drawing.arrowHeight
 
         case .left, .right:
 
-            bubbleWidth = tipViewSize.width - internalConfig.positioning.bubbleInsets.left - internalConfig.positioning.bubbleInsets.right - internalConfig.drawing.arrowHeight
-            bubbleHeight = tipViewSize.height - internalConfig.positioning.bubbleInsets.top - internalConfig.positioning.bubbleInsets.left
+            bubbleWidth = tipViewSize.width -  internalConfig.drawing.arrowHeight
+            bubbleHeight = tipViewSize.height
 
-            bubbleXOrigin = arrowPosition == .right ? internalConfig.positioning.bubbleInsets.left : internalConfig.positioning.bubbleInsets.left + internalConfig.drawing.arrowHeight
-            bubbleYOrigin = internalConfig.positioning.bubbleInsets.top
+            bubbleXOrigin = arrowPosition == .right ? 0 : internalConfig.drawing.arrowHeight
+            bubbleYOrigin = 0
 
         }
         return CGRect(x: bubbleXOrigin, y: bubbleYOrigin, width: bubbleWidth, height: bubbleHeight)
