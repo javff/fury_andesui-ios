@@ -14,6 +14,8 @@ target 'AndesUI-demoapp' do
     pod 'AndesUI/AndesBottomSheet', :path => './'
     pod 'AndesUI/AndesDropdown', :path => './'
     pod 'IQKeyboardManagerSwift', '6.3.0'
+    pod 'EasyTipView', '~> 2.1'
+
 
     target 'AndesUI_Tests' do
         inherit! :search_paths

@@ -19,6 +19,7 @@
                 <outlet property="progressIndicatorSmallWithoutText" destination="nSj-39-YTb" id="gAl-vD-1vP"/>
                 <outlet property="progressIndicatorXSmallWithText" destination="cam-6u-onV" id="TgW-at-U6r"/>
                 <outlet property="progressIndicatorXSmallWithoutText" destination="Q2J-uH-5pu" id="Kr2-dY-VHh"/>
+                <outlet property="scrollView" destination="9mE-e9-I08" id="1zu-Qv-ckH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

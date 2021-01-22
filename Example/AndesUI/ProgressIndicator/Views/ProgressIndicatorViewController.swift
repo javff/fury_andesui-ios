@@ -8,9 +8,11 @@
 
 import UIKit
 import AndesUI
+import EasyTipView
 
 class ProgressIndicatorViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var progressIndicatorLargeWithText: AndesProgressIndicatorIndeterminate!
     @IBOutlet weak var progressIndicatorSmallWithText: AndesProgressIndicatorIndeterminate!
     @IBOutlet weak var progressIndicatorMediumWithText: AndesProgressIndicatorIndeterminate!
@@ -24,6 +26,13 @@ class ProgressIndicatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupObjcCase()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            let tooltip = AndesTooltip()
+            tooltip.show(in: self.progressIndicatorLargeWithText, within: self.scrollView)
+        }
+
+        //        tooltip.show(in: disabledAndesButton, within: self.disabledAndesButton.superview!)
     }
 
     override func viewWillAppear(_ animated: Bool) {
