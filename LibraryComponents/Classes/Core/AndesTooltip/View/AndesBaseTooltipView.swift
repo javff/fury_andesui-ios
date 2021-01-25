@@ -101,10 +101,6 @@ enum AndesBaseTooltipArrowPosition: CaseIterable {
     case top
     case right
     case left
-    case bottomLeft
-    case bottomRight
-    case topLeft
-    case topRight
 }
 
 class AndesBaseTooltipView: UIView {
@@ -116,7 +112,7 @@ class AndesBaseTooltipView: UIView {
     private let externalConfig: AndesBaseTooltipExternalConfig
     private let content: UIView
     private let internalConfig = AndesBaseTooltipInternalConfig()
-    var arrowPosition: AndesBaseTooltipArrowPosition = .top
+    var arrowPosition: AndesBaseTooltipArrowPosition = .right
 
     // MARK: - Lazy variables
     lazy var contentSize: CGSize = {
@@ -160,13 +156,13 @@ class AndesBaseTooltipView: UIView {
 
     // MARK: - Private methods -
     fileprivate func computeFrame(arrowPosition position: AndesBaseTooltipArrowPosition, refViewFrame: CGRect, superviewFrame: CGRect) -> CGRect {
-        var xOrigin: CGFloat = 0
-        var yOrigin: CGFloat = 0
+        let xOrigin: CGFloat
+        let yOrigin: CGFloat
 
         switch position {
         case .top:
             xOrigin = refViewFrame.center.x - tipViewSize.width / 2
-            yOrigin = refViewFrame.y + refViewFrame.height
+            yOrigin = refViewFrame.maxY
         case .bottom:
             xOrigin = refViewFrame.center.x - tipViewSize.width / 2
             yOrigin = refViewFrame.y - tipViewSize.height
@@ -176,51 +172,44 @@ class AndesBaseTooltipView: UIView {
         case .left:
             xOrigin = refViewFrame.x + refViewFrame.width
             yOrigin = refViewFrame.center.y - tipViewSize.height / 2
-        case .bottomLeft:
-            break
-        case .bottomRight:
-            break
-        case .topLeft:
-            break
-        case .topRight:
-            break
         }
 
         var frame = CGRect(x: xOrigin, y: yOrigin, width: tipViewSize.width, height: tipViewSize.height)
 
-        frame.origin = adjustFrame(frame, forSuperviewFrame: superviewFrame)
+        frame.origin = adjustFrame(frame, forSuperviewFrame: superviewFrame, refViewFrame: refViewFrame)
 
         return frame
     }
 
-    fileprivate func adjustFrame(_ frame: CGRect, forSuperviewFrame superviewFrame: CGRect) -> CGPoint {
+    fileprivate func adjustFrame(_ frame: CGRect, forSuperviewFrame superviewFrame: CGRect, refViewFrame: CGRect) -> CGPoint {
 
         var adjustXFrame: CGFloat = frame.x
         var adjustYFrame: CGFloat = frame.y
 
         // adjust horizontally
         if frame.x < 0 {
-            adjustXFrame =  0
+            adjustXFrame =  refViewFrame.x
         }
 
         if frame.maxX > superviewFrame.width {
-            adjustXFrame = superviewFrame.width - frame.width
+            adjustXFrame = superviewFrame.width - frame.width - (superviewFrame.width - refViewFrame.maxX)
         }
 
         //adjust vertically
         if frame.y < 0 {
-            adjustYFrame = 0
+            adjustYFrame = refViewFrame.y
         }
 
-        if frame.maxY > superviewFrame.maxY {
-            adjustYFrame = superviewFrame.height - frame.height
+        if frame.maxY > superviewFrame.height {
+            adjustYFrame = superviewFrame.height - frame.height - (superviewFrame.height - refViewFrame.maxY)
         }
 
         return CGPoint(x: adjustXFrame, y: adjustYFrame)
     }
 
-    fileprivate func isFrameValid(_ frame: CGRect, forRefViewFrame: CGRect) -> Bool {
-        return !frame.intersects(forRefViewFrame)
+    fileprivate func isFrameValid(_ frame: CGRect, forRefViewFrame: CGRect, superViewFrame: CGRect) -> Bool {
+        return !frame.intersects(forRefViewFrame) &&
+            frame.maxY < superViewFrame.height && frame.maxX < superViewFrame.maxX
     }
 
     fileprivate func arrange(withinSuperview superview: UIView) {
@@ -238,7 +227,7 @@ class AndesBaseTooltipView: UIView {
 
         var frame = computeFrame(arrowPosition: position, refViewFrame: refViewFrame, superviewFrame: superviewFrame)
 
-        if !isFrameValid(frame, forRefViewFrame: refViewFrame) {
+        if !isFrameValid(frame, forRefViewFrame: refViewFrame, superViewFrame: superviewFrame) {
             let (newFrame, newPosition) = createValidFrame(
                 frame,
                 currentPosition: position,
@@ -261,7 +250,7 @@ class AndesBaseTooltipView: UIView {
 
         for value in AndesBaseTooltipArrowPosition.allCases where value != currentPosition {
             let frame = computeFrame(arrowPosition: value, refViewFrame: refViewFrame, superviewFrame: superViewFrame)
-            if isFrameValid(newFrame, forRefViewFrame: refViewFrame) {
+            if isFrameValid(frame, forRefViewFrame: refViewFrame, superViewFrame: superViewFrame) {
                 newFrame = frame
                 newPosition = value
                 arrowPosition = value
@@ -275,7 +264,7 @@ class AndesBaseTooltipView: UIView {
     fileprivate func calculateArrowTipPoint(frame: CGRect, position: AndesBaseTooltipArrowPosition, refViewFrame: CGRect) -> CGPoint {
         switch position {
         case .bottom, .top:
-            var arrowTipXOrigin: CGFloat
+            let arrowTipXOrigin: CGFloat
             if frame.width < refViewFrame.width {
                 arrowTipXOrigin = tipViewSize.width / 2
             } else {
@@ -287,7 +276,7 @@ class AndesBaseTooltipView: UIView {
             return CGPoint(x: arrowTipXOrigin, y: yPosition)
 
         case .right, .left:
-            var arrowTipYOrigin: CGFloat
+            let arrowTipYOrigin: CGFloat
             if frame.height < refViewFrame.height {
                 arrowTipYOrigin = tipViewSize.height / 2
             } else {
@@ -297,8 +286,7 @@ class AndesBaseTooltipView: UIView {
             let xPosition = arrowPosition == .left ? 0 : tipViewSize.width
 
             return CGPoint(x: xPosition, y: arrowTipYOrigin)
-        default:
-            return .zero
+
         }
     }
 
@@ -358,8 +346,6 @@ class AndesBaseTooltipView: UIView {
             let secondLineY = arrowTip.y + arrowWidth / 2
             let pointRight = CGPoint(x: secondLineX, y: secondLineY)
             contourPath.addLine(to: pointRight)
-        default:
-            break
         }
 
         contourPath.closeSubpath()
@@ -460,9 +446,6 @@ class AndesBaseTooltipView: UIView {
 
             bubbleXOrigin = arrowPosition == .right ? 0 : internalConfig.drawing.arrowHeight
             bubbleYOrigin = 0
-
-        default:
-            return .zero
         }
 
         return CGRect(x: bubbleXOrigin, y: bubbleYOrigin, width: bubbleWidth, height: bubbleHeight)

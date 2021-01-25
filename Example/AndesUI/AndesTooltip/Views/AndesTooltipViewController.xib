@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesTooltipViewController" customModule="AndesUI_DemoApp" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="ytm-Cp-pCN" id="Szx-9l-fe4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,48 +20,66 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZL-iv-TOq">
-                    <rect key="frame" x="20" y="64" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="leftTopButtonTapped:" destination="-1" eventType="touchUpInside" id="WZu-dG-Kkz"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrj-al-eUj">
-                    <rect key="frame" x="348" y="64" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="rightTopButtonTapped:" destination="-1" eventType="touchUpInside" id="1qC-EA-54Z"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDR-yS-So8">
-                    <rect key="frame" x="20" y="812" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="leftBottomButtonTapped:" destination="-1" eventType="touchUpInside" id="kfG-su-CgM"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tB-qe-dyG">
-                    <rect key="frame" x="298" y="812" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="rightBottomButtonTapped:" destination="-1" eventType="touchUpInside" id="vqT-ao-ZT9"/>
-                    </connections>
-                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytm-Cp-pCN">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZL-iv-TOq">
+                            <rect key="frame" x="10" y="5" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="leftTopButtonTapped:" destination="-1" eventType="touchUpInside" id="WZu-dG-Kkz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrj-al-eUj">
+                            <rect key="frame" x="358" y="10" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="rightTopButtonTapped:" destination="-1" eventType="touchUpInside" id="1qC-EA-54Z"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDR-yS-So8">
+                            <rect key="frame" x="10" y="778" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="leftBottomButtonTapped:" destination="-1" eventType="touchUpInside" id="kfG-su-CgM"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tB-qe-dyG">
+                            <rect key="frame" x="358" y="778" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="rightBottomButtonTapped:" destination="-1" eventType="touchUpInside" id="vqT-ao-ZT9"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxi-eL-U1d">
+                            <rect key="frame" x="184" y="394" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="IDR-yS-So8" secondAttribute="bottom" constant="10" id="7HW-Po-D4T"/>
+                        <constraint firstItem="UZL-iv-TOq" firstAttribute="top" secondItem="ytm-Cp-pCN" secondAttribute="top" constant="5" id="EgZ-wr-J0h"/>
+                        <constraint firstAttribute="trailing" secondItem="mrj-al-eUj" secondAttribute="trailing" constant="10" id="GtD-9A-N7w"/>
+                        <constraint firstAttribute="trailing" secondItem="7tB-qe-dyG" secondAttribute="trailing" constant="10" id="RFJ-TU-kf2"/>
+                        <constraint firstItem="Fxi-eL-U1d" firstAttribute="centerY" secondItem="ytm-Cp-pCN" secondAttribute="centerY" id="SbO-Jt-ibQ"/>
+                        <constraint firstItem="IDR-yS-So8" firstAttribute="leading" secondItem="ytm-Cp-pCN" secondAttribute="leading" constant="10" id="Uuh-iW-O8h"/>
+                        <constraint firstItem="UZL-iv-TOq" firstAttribute="leading" secondItem="ytm-Cp-pCN" secondAttribute="leading" constant="10" id="ZON-S3-uZl"/>
+                        <constraint firstAttribute="bottom" secondItem="7tB-qe-dyG" secondAttribute="bottom" constant="10" id="aB5-cp-Mzh"/>
+                        <constraint firstItem="Fxi-eL-U1d" firstAttribute="centerX" secondItem="ytm-Cp-pCN" secondAttribute="centerX" id="kwh-Wh-dBD"/>
+                        <constraint firstItem="mrj-al-eUj" firstAttribute="top" secondItem="ytm-Cp-pCN" secondAttribute="top" constant="10" id="wtX-3h-y76"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7tB-qe-dyG" secondAttribute="bottom" constant="20" id="1E7-xT-DFm"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mrj-al-eUj" secondAttribute="trailing" constant="20" id="K4i-P9-JtA"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7tB-qe-dyG" secondAttribute="trailing" constant="70" id="QIU-Ow-boU"/>
-                <constraint firstItem="UZL-iv-TOq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ZCv-6Q-IST"/>
-                <constraint firstItem="mrj-al-eUj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="dNA-se-udU"/>
-                <constraint firstItem="UZL-iv-TOq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="j6j-F9-sJi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="IDR-yS-So8" secondAttribute="bottom" constant="20" id="omf-UC-mTF"/>
-                <constraint firstItem="IDR-yS-So8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="sn0-Oa-aFQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ytm-Cp-pCN" secondAttribute="bottom" id="SaO-YL-hWY"/>
+                <constraint firstItem="ytm-Cp-pCN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bIy-iW-eMI"/>
+                <constraint firstItem="ytm-Cp-pCN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m29-DO-6ge"/>
+                <constraint firstItem="ytm-Cp-pCN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ss9-A4-Sti"/>
             </constraints>
-            <point key="canvasLocation" x="141" y="81"/>
+            <point key="canvasLocation" x="140.57971014492756" y="80.357142857142847"/>
         </view>
     </objects>
     <resources>
