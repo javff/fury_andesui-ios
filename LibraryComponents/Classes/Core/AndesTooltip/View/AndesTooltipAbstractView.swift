@@ -16,7 +16,7 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
 
     lazy var tooltip: AndesBaseTooltipView = {
         let background = config.backgroundColor
-        let tooltip = AndesBaseTooltipView(content: componentView, config: AndesBaseTooltipExternalConfig(backgroundColor: .blue, foregroundColor: .red))
+        let tooltip = AndesBaseTooltipView(content: componentView, config: AndesBaseTooltipExternalConfig(backgroundColor: .white, foregroundColor: .red))
        return tooltip
     }()
 

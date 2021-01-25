@@ -17,6 +17,7 @@ protocol HomeView: NSObject {
 class HomeViewController: UIViewController {
 
     weak var presenter: HomePresenter!
+    @IBOutlet weak var tooltipBtn: AndesButton!
     @IBOutlet weak var progressIndicatorBtn: AndesButton!
     @IBOutlet weak var coachmarkBtn: AndesButton!
     @IBOutlet weak var button: AndesButton!
@@ -150,6 +151,10 @@ class HomeViewController: UIViewController {
 
     @IBAction func andesBadgeExtensionTapped(_ sender: Any) {
         presenter.presentAndesBadgeExtension()
+    }
+    
+    @IBAction func tooltipTapped(_ sender: Any) {
+        presenter.presentTooltip()
     }
 }
 
