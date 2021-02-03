@@ -11,11 +11,9 @@ import Foundation
 
 /// used to define the ui of internal AndesTooltip views
 internal struct AndesTooltipViewConfig {
-    var backgroundColor: UIColor?
-    var textColor: UIColor?
-    init() {}
+    let backgroundColor: UIColor
 
     init(type: AndesTooltipTypeProtocol) {
-        self.textColor = type.textColor
+        self.backgroundColor = .white
     }
 }

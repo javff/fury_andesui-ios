@@ -23,22 +23,16 @@ class AndesTooltipViewController: UIViewController {
     @IBAction func rightBottomButtonTapped(_ sender: UIButton) {
         let xx = AndesTooltip()
         xx.show(in: sender, within: contentView)
-//        let asy = EasyTipView(text: "Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum")
-//        asy.show(forView: sender)
     }
 
     @IBAction func leftBottomButtonTapped(_ sender: UIButton) {
         let xx = AndesTooltip()
         xx.show(in: sender, within: contentView)
-//        let asy = EasyTipView(text: "Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum")
-//        asy.show(forView: sender)
     }
 
     @IBAction func rightTopButtonTapped(_ sender: UIButton) {
         let xx = AndesTooltip()
         xx.show(in: sender, within: contentView)
-//        let asy = EasyTipView(text: "Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum")
-//        asy.show(forView: sender)
     }
 
     @IBAction func leftTopButtonTapped(_ sender: UIButton) {

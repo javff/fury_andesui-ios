@@ -10,16 +10,19 @@
 import UIKit
 
 class AndesTooltipAbstractView: UIView, AndesTooltipView {
+
     @IBOutlet weak var componentView: UIView!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
 
     var config: AndesTooltipViewConfig
 
     lazy var tooltip: AndesBaseTooltipView = {
-        let background = config.backgroundColor
-        let tooltip = AndesBaseTooltipView(content: componentView, config: AndesBaseTooltipExternalConfig(backgroundColor: .white, foregroundColor: .red))
-       return tooltip
-    }()
+       let tooltip =  AndesBaseTooltipView(content: self, config: config)
 
+        return tooltip
+    }()
     init(withConfig config: AndesTooltipViewConfig) {
         self.config = config
         super.init(frame: .zero)
@@ -27,9 +30,7 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
     }
 
     required init?(coder: NSCoder) {
-        config = AndesTooltipViewConfig()
-        super.init(coder: coder)
-        setup()
+        fatalError("")
     }
 
     internal func loadNib() {
@@ -42,13 +43,13 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
     }
 
     @objc func show(in view: UIView, within superView: UIView) {
-        tooltip.show(forView: view, withinSuperview: superView)
+        tooltip.show(target: view, withinSuperview: superView)
     }
 
-    func pinXibViewToSelf() {
-        addSubview(componentView)
-        componentView.translatesAutoresizingMaskIntoConstraints = false
-        componentView.pinToSuperview()
+    @objc func dismiss() {
+        self.tooltip.dismiss {
+            // call completion dismiss
+        }
     }
 
     func setup() {
@@ -60,7 +61,19 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
 
     /// Override this method on each Badge View to setup its unique components
     func updateView() {
-        self.backgroundColor = config.backgroundColor
+        let closeIcon = AndesIcons.close16
+        AndesIconsProvider.loadIcon(name: closeIcon) { image in
+            self.closeButton.setImage(image, for: .normal)
+        }
     }
 
+    func pinXibViewToSelf() {
+        addSubview(componentView)
+        componentView.translatesAutoresizingMaskIntoConstraints = false
+        componentView.pinToSuperview()
+    }
+
+    @IBAction func closeButtonTapped() {
+        self.dismiss()
+    }
 }

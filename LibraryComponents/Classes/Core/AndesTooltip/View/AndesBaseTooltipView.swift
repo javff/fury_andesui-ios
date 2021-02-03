@@ -8,20 +8,15 @@
 import Foundation
 import UIKit
 
-struct AndesBaseTooltipExternalConfig {
-    let backgroundColor: UIColor
-    let foregroundColor: UIColor
-}
-
 private struct AndesBaseTooltipInternalConfig {
 
     struct Positioning {
-        let contentInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        let maxWidth = CGFloat(200)
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let maxWidth = CGFloat(240)
      }
 
     struct Drawing {
-        let cornerRadius = CGFloat(5)
+        let cornerRadius = CGFloat(6)
         let arrowHeight = CGFloat(5)
         let arrowWidth = CGFloat(10)
         let borderWidth = CGFloat(0)
@@ -42,7 +37,6 @@ private struct AndesBaseTooltipInternalConfig {
         let dismissFinalAlpha = CGFloat(0)
         let showDuration = 0.7
         let dismissDuration = 0.7
-        let dismissOnTap = true
     }
 
     let drawing = Drawing()
@@ -52,20 +46,17 @@ private struct AndesBaseTooltipInternalConfig {
 
 extension AndesBaseTooltipView {
 
-    func show(forView view: UIView, withinSuperview superview: UIView) {
+    func show(target targetView: UIView, withinSuperview superview: UIView) {
 
         let initialTransform = internalConfig.animating.showInitialTransform
         let finalTransform = internalConfig.animating.showFinalTransform
         let initialAlpha = internalConfig.animating.showInitialAlpha
 
-        presentingView = view
+        presentingView = targetView
         arrange(withinSuperview: superview)
 
         transform = initialTransform
         alpha = initialAlpha
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tap)
 
         superview.addSubview(self)
 
@@ -109,7 +100,7 @@ class AndesBaseTooltipView: UIView {
 
     fileprivate weak var presentingView: UIView?
     fileprivate var arrowTip = CGPoint.zero
-    private let externalConfig: AndesBaseTooltipExternalConfig
+    private let config: AndesTooltipViewConfig
     private let content: UIView
     private let internalConfig = AndesBaseTooltipInternalConfig()
     var arrowPosition: AndesBaseTooltipArrowPosition = .right
@@ -118,34 +109,44 @@ class AndesBaseTooltipView: UIView {
     lazy var contentSize: CGSize = {
         let horizontalPriority = UILayoutPriority(750)
         let verticalPriority = UILayoutPriority(749)
-        let targetWidth = self.internalConfig.positioning.maxWidth
-        let targetSize = CGSize(width: targetWidth, height: 0)
+        let maxWidthSize = self.internalConfig.positioning.maxWidth
+        let targetSize = CGSize(width: maxWidthSize, height: 0)
 
         let candidateSize = content.systemLayoutSizeFitting(.zero)
-        let size = candidateSize.width <= targetWidth ? candidateSize :
-         content.systemLayoutSizeFitting(
+
+        let sizeIsEnough = candidateSize.width <= maxWidthSize
+
+        if sizeIsEnough {
+            return candidateSize
+        }
+
+        return content.systemLayoutSizeFitting(
             targetSize,
             withHorizontalFittingPriority: horizontalPriority,
             verticalFittingPriority: verticalPriority
         )
-        return size
     }()
 
-    lazy var tipViewSize: CGSize = {
-        let width = self.contentSize.width +
-            self.internalConfig.positioning.contentInsets.left + self.internalConfig.positioning.contentInsets.right
+    func getTipViewSize(position: AndesBaseTooltipArrowPosition) -> CGSize {
 
-        let height = self.contentSize.height + self.internalConfig.positioning.contentInsets.top + self.internalConfig.positioning.contentInsets.bottom
-            //+self.internalConfig.drawing.arrowHeight
+        let width = self.contentSize.width +
+            self.internalConfig.positioning.contentInsets.left +
+            self.internalConfig.positioning.contentInsets.right -
+            0
+
+        let height = self.contentSize.height +
+            self.internalConfig.positioning.contentInsets.top +
+            self.internalConfig.positioning.contentInsets.bottom +
+            self.internalConfig.drawing.arrowHeight
 
         return CGSize(width: width, height: height)
-    }()
+    }
 
     // MARK: - Initializer -
 
-    internal init (content: UIView, config: AndesBaseTooltipExternalConfig) {
+    internal init (content: UIView, config: AndesTooltipViewConfig) {
         self.content = content
-        self.externalConfig = config
+        self.config = config
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.clear
     }
@@ -158,6 +159,7 @@ class AndesBaseTooltipView: UIView {
     fileprivate func computeFrame(arrowPosition position: AndesBaseTooltipArrowPosition, refViewFrame: CGRect, superviewFrame: CGRect) -> CGRect {
         let xOrigin: CGFloat
         let yOrigin: CGFloat
+        let tipViewSize = getTipViewSize(position: self.arrowPosition)
 
         switch position {
         case .top:
@@ -262,6 +264,9 @@ class AndesBaseTooltipView: UIView {
     }
 
     fileprivate func calculateArrowTipPoint(frame: CGRect, position: AndesBaseTooltipArrowPosition, refViewFrame: CGRect) -> CGPoint {
+
+        let tipViewSize = self.getTipViewSize(position: position)
+
         switch position {
         case .bottom, .top:
             let arrowTipXOrigin: CGFloat
@@ -288,13 +293,6 @@ class AndesBaseTooltipView: UIView {
             return CGPoint(x: xPosition, y: arrowTipYOrigin)
 
         }
-    }
-
-    // MARK: - Callbacks -
-
-    @objc func handleTap() {
-        guard internalConfig.animating.dismissOnTap else { return }
-        dismiss()
     }
 
     // MARK: - Drawing -
@@ -365,19 +363,56 @@ class AndesBaseTooltipView: UIView {
 
     fileprivate func drawBubbleTopShape(_ frame: CGRect, cornerRadius: CGFloat, path: CGMutablePath) {
 
-        path.addArc(tangent1End: CGPoint(x: frame.x, y: frame.y), tangent2End: CGPoint(x: frame.x, y: frame.y + frame.height), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: frame.x, y: frame.y + frame.height), tangent2End: CGPoint(x: frame.x + frame.width, y: frame.y + frame.height), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: frame.x + frame.width, y: frame.y + frame.height), tangent2End: CGPoint(x: frame.x + frame.width, y: frame.y), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: frame.x + frame.width, y: frame.y), tangent2End: CGPoint(x: frame.x, y: frame.y), radius: cornerRadius)
+        let arc1FirstTangent = CGPoint(x: frame.x, y: frame.y)
+        let arc1SecondTangent = CGPoint(x: frame.x, y: frame.y + frame.height)
+        path.addArc(tangent1End: arc1FirstTangent,
+                    tangent2End: arc1SecondTangent,
+                    radius: cornerRadius)
+
+        let arc2FirstTangent = CGPoint(x: frame.x, y: frame.y + frame.height)
+        let arc2SecondTangent = CGPoint(x: frame.x + frame.width, y: frame.y + frame.height)
+        path.addArc(tangent1End: arc2FirstTangent,
+                    tangent2End: arc2SecondTangent,
+                    radius: cornerRadius)
+
+        let arc3FirstTangent = CGPoint(x: frame.x + frame.width, y: frame.y + frame.height)
+        let arc3SecondTangent = CGPoint(x: frame.x + frame.width, y: frame.y)
+        path.addArc(tangent1End: arc3FirstTangent,
+                    tangent2End: arc3SecondTangent,
+                    radius: cornerRadius)
+
+        let arc4FirstTangent = CGPoint(x: frame.x + frame.width, y: frame.y)
+        let arc4SecondTangent = CGPoint(x: frame.x, y: frame.y)
+        path.addArc(tangent1End: arc4FirstTangent,
+                    tangent2End: arc4SecondTangent,
+                    radius: cornerRadius)
     }
 
     fileprivate func drawBubbleRightShape(_ frame: CGRect, cornerRadius: CGFloat, path: CGMutablePath) {
 
-        path.addArc(tangent1End: CGPoint(x: frame.x + frame.width, y: frame.y), tangent2End: CGPoint(x: frame.x, y: frame.y), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: frame.x, y: frame.y), tangent2End: CGPoint(x: frame.x, y: frame.y + frame.height), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: frame.x, y: frame.y + frame.height), tangent2End: CGPoint(x: frame.x + frame.width, y: frame.y + frame.height), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: frame.x + frame.width, y: frame.y + frame.height), tangent2End: CGPoint(x: frame.x + frame.width, y: frame.height), radius: cornerRadius)
+        let arc1FirstTangent = CGPoint(x: frame.x + frame.width, y: frame.y)
+        let arc1SecondTangent = CGPoint(x: frame.x, y: frame.y)
+        path.addArc(tangent1End: arc1FirstTangent,
+                    tangent2End: arc1SecondTangent,
+                    radius: cornerRadius)
 
+        let arc2FirstTangent = CGPoint(x: frame.x, y: frame.y)
+        let arc2SecondTangent = CGPoint(x: frame.x, y: frame.y + frame.height)
+        path.addArc(tangent1End: arc2FirstTangent,
+                    tangent2End: arc2SecondTangent,
+                    radius: cornerRadius)
+
+        let arc3FirstTangent = CGPoint(x: frame.x, y: frame.y + frame.height)
+        let arc3SecondTangent = CGPoint(x: frame.x + frame.width, y: frame.y + frame.height)
+        path.addArc(tangent1End: arc3FirstTangent,
+                    tangent2End: arc3SecondTangent,
+                    radius: cornerRadius)
+
+        let arc4FirstTangent = CGPoint(x: frame.x + frame.width, y: frame.y + frame.height)
+        let arc4SecondTangent = CGPoint(x: frame.x + frame.width, y: frame.y)
+        path.addArc(tangent1End: arc4FirstTangent,
+                    tangent2End: arc4SecondTangent,
+                    radius: cornerRadius)
     }
 
     fileprivate func drawBubbleLeftShape(_ frame: CGRect, cornerRadius: CGFloat, path: CGMutablePath) {
@@ -389,7 +424,7 @@ class AndesBaseTooltipView: UIView {
     }
 
     fileprivate func paintBubble(_ context: CGContext) {
-        context.setFillColor(externalConfig.backgroundColor.cgColor)
+        context.setFillColor(config.backgroundColor.cgColor)
         context.fill(bounds)
     }
 
@@ -407,20 +442,42 @@ class AndesBaseTooltipView: UIView {
         }
         let bubbleFrame = getBubbleFrame()
         context.saveGState()
-        drawBubble(bubbleFrame, arrowPosition: arrowPosition, context: context)
+        drawBubble(bubbleFrame,
+                   arrowPosition: arrowPosition,
+                   context: context)
         setupContentView()
         drawShadow()
         context.restoreGState()
     }
 
     private func setupContentView() {
+
+        let tipSize = self.internalConfig.drawing.arrowHeight
+
+        let extraSpacingLeft = self.arrowPosition == .left ? tipSize : 0
+        let extraSpacingRight = self.arrowPosition == .right ? tipSize : 0
+        let extraSpacingTop = self.arrowPosition == .top ? tipSize : 0
+        let extraSpacingBottom = self.arrowPosition == .bottom ? tipSize : 0
+
         addSubview(content)
         content.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo: topAnchor, constant: internalConfig.positioning.contentInsets.top),
-            content.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -internalConfig.positioning.contentInsets.right),
-            content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: internalConfig.positioning.contentInsets.left),
-            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -internalConfig.positioning.contentInsets.bottom)
+            content.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: internalConfig.positioning.contentInsets.top + extraSpacingTop
+            ),
+            content.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -(internalConfig.positioning.contentInsets.right + extraSpacingRight)
+            ),
+            content.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: internalConfig.positioning.contentInsets.left + extraSpacingLeft
+            ),
+            bottomAnchor.constraint(
+                equalTo: content.bottomAnchor,
+                constant: (internalConfig.positioning.contentInsets.bottom + extraSpacingBottom)
+            )
         ])
     }
 
@@ -429,6 +486,7 @@ class AndesBaseTooltipView: UIView {
         let bubbleHeight: CGFloat
         let bubbleXOrigin: CGFloat
         let bubbleYOrigin: CGFloat
+        let tipViewSize = self.getTipViewSize(position: arrowPosition)
 
         switch arrowPosition {
         case .bottom, .top:

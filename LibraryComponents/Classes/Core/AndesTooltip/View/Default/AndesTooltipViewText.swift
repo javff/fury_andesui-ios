@@ -11,8 +11,6 @@ import Foundation
 
 class AndesTooltipViewText: AndesTooltipAbstractView {
 
-    @IBOutlet weak var contentLabel: UILabel!
-
     override func loadNib() {
         let bundle = AndesBundle.bundle()
         bundle.loadNibNamed("AndesTooltipViewText", owner: self, options: nil)
@@ -21,4 +19,5 @@ class AndesTooltipViewText: AndesTooltipAbstractView {
     override func updateView() {
         super.updateView()
     }
+
 }

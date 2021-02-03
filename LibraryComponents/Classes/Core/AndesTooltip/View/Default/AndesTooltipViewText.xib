@@ -9,32 +9,60 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesTooltipViewText" customModule="AndesUI">
             <connections>
+                <outlet property="closeButton" destination="yGf-3c-umw" id="Ktj-8s-5gE"/>
                 <outlet property="componentView" destination="iN0-l3-epB" id="pJc-XA-8DK"/>
                 <outlet property="contentLabel" destination="xpo-Rk-sfr" id="oL7-j1-fdZ"/>
+                <outlet property="titleLabel" destination="NXB-nA-49g" id="4HS-Xy-LcN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="477" height="174"/>
+            <rect key="frame" x="0.0" y="0.0" width="477" height="85"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sum Lorem it fin sum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it fin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpo-Rk-sfr">
-                    <rect key="frame" x="0.0" y="0.0" width="477" height="29"/>
+                    <rect key="frame" x="16" y="42" width="417" height="27"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXB-nA-49g">
+                    <rect key="frame" x="16" y="16" width="417" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-3c-umw">
+                    <rect key="frame" x="435" y="10" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="GyZ-cU-U9a"/>
+                        <constraint firstAttribute="width" constant="32" id="KZQ-2b-PJs"/>
+                    </constraints>
+                    <state key="normal" image="andes_ui_close_16"/>
+                    <connections>
+                        <action selector="closeButtonTapped" destination="-1" eventType="touchUpInside" id="OEl-3P-n71"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="xpo-Rk-sfr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="P7T-04-Bw5"/>
-                <constraint firstItem="xpo-Rk-sfr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RlY-er-Api"/>
-                <constraint firstAttribute="trailing" secondItem="xpo-Rk-sfr" secondAttribute="trailing" id="TBQ-tC-7qr"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xpo-Rk-sfr" secondAttribute="bottom" id="xLC-Va-9mm"/>
+                <constraint firstItem="yGf-3c-umw" firstAttribute="leading" secondItem="xpo-Rk-sfr" secondAttribute="trailing" constant="2" id="31i-bO-djh"/>
+                <constraint firstItem="yGf-3c-umw" firstAttribute="leading" secondItem="NXB-nA-49g" secondAttribute="trailing" constant="2" id="6tD-lr-OaY"/>
+                <constraint firstItem="NXB-nA-49g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="8Sr-hn-tQX"/>
+                <constraint firstItem="xpo-Rk-sfr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yGf-3c-umw" secondAttribute="bottom" id="8ZJ-lo-oEF"/>
+                <constraint firstItem="xpo-Rk-sfr" firstAttribute="top" secondItem="NXB-nA-49g" secondAttribute="bottom" constant="4" id="Mt3-sb-MOo"/>
+                <constraint firstItem="xpo-Rk-sfr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="OLl-tf-4hQ"/>
+                <constraint firstItem="NXB-nA-49g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="PWm-Uj-qR2"/>
+                <constraint firstItem="yGf-3c-umw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="dqu-HX-tX8"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xpo-Rk-sfr" secondAttribute="bottom" constant="16" id="lLH-1X-OpK"/>
+                <constraint firstAttribute="trailing" secondItem="yGf-3c-umw" secondAttribute="trailing" constant="10" id="q4S-kS-SH8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-34.057971014492757" y="-32.142857142857139"/>
+            <point key="canvasLocation" x="-292" y="81"/>
         </view>
     </objects>
+    <resources>
+        <image name="andes_ui_close_16" width="16" height="16"/>
+    </resources>
 </document>
