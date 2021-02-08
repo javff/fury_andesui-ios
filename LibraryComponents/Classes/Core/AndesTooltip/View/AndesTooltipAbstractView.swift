@@ -65,6 +65,8 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
         AndesIconsProvider.loadIcon(name: closeIcon) { image in
             self.closeButton.setImage(image, for: .normal)
         }
+        self.titleLabel.textColor = config.textColor
+        self.contentLabel.textColor = config.textColor
     }
 
     func pinXibViewToSelf() {

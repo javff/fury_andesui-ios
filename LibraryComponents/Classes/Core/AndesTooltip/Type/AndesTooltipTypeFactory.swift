@@ -11,12 +11,13 @@ import Foundation
 
 class AndesTooltipTypeFactory {
     static func provide(_ type: AndesTooltipType) -> AndesTooltipTypeProtocol {
-        return  AndesTooltipTypeSuccess()
-//        switch type {
-//        case .success:
-//            return
-//        case .error:
-//            return AndesTooltipTypeError()
-//        }
+        switch type {
+        case .light:
+            return AndesTooltipTypeLight()
+        case .dark:
+            return AndesTooltipTypeDark()
+        case .highlight:
+            return AndesTooltipTypeHighlight()
+        }
     }
 }

@@ -11,6 +11,7 @@ import Foundation
 
 /// used to define the ui of internal AndesTooltip views
 internal struct AndesTooltipViewConfig {
+    var textColor: UIColor
     let backgroundColor: UIColor
     let maxWidth: CGFloat
     let shadowOffset: CGSize
@@ -18,10 +19,11 @@ internal struct AndesTooltipViewConfig {
     let shadowOpacity: CGFloat
 
     init(type: AndesTooltipTypeProtocol) {
-        self.backgroundColor = .white
-        self.maxWidth = 240
-        shadowOffset = CGSize(width: 0, height: 0)
-        shadowRadius = CGFloat(6)
-        shadowOpacity = CGFloat(0.4)
+        backgroundColor = type.backgroundColor
+        maxWidth = type.maxWidth
+        shadowOffset = type.shadowOffset
+        shadowRadius = type.shadowRadius
+        shadowOpacity = type.shadowOpacity
+        textColor = type.textColor
     }
 }

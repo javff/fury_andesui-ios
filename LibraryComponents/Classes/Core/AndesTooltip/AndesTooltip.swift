@@ -12,7 +12,7 @@ import Foundation
 @objc public class AndesTooltip: UIView {
     internal var contentView: AndesTooltipView!
 
-    @objc public var type: AndesTooltipType = .light {
+    @objc public var type: AndesTooltipType = .highlight {
         didSet {
             updateContentView()
         }
