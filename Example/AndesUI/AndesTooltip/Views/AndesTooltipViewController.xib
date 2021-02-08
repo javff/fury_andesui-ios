@@ -24,8 +24,10 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZL-iv-TOq">
-                            <rect key="frame" x="10" y="5" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
+                            <rect key="frame" x="120" y="5" width="46" height="30"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" systemColor="systemRedColor"/>
+                            </state>
                             <connections>
                                 <action selector="leftTopButtonTapped:" destination="-1" eventType="touchUpInside" id="WZu-dG-Kkz"/>
                             </connections>
@@ -68,7 +70,7 @@
                         <constraint firstAttribute="trailing" secondItem="7tB-qe-dyG" secondAttribute="trailing" constant="10" id="RFJ-TU-kf2"/>
                         <constraint firstItem="Fxi-eL-U1d" firstAttribute="centerY" secondItem="ytm-Cp-pCN" secondAttribute="centerY" id="SbO-Jt-ibQ"/>
                         <constraint firstItem="IDR-yS-So8" firstAttribute="leading" secondItem="ytm-Cp-pCN" secondAttribute="leading" constant="10" id="Uuh-iW-O8h"/>
-                        <constraint firstItem="UZL-iv-TOq" firstAttribute="leading" secondItem="ytm-Cp-pCN" secondAttribute="leading" constant="10" id="ZON-S3-uZl"/>
+                        <constraint firstItem="UZL-iv-TOq" firstAttribute="leading" secondItem="ytm-Cp-pCN" secondAttribute="leading" constant="120" id="ZON-S3-uZl"/>
                         <constraint firstAttribute="bottom" secondItem="7tB-qe-dyG" secondAttribute="bottom" constant="10" id="aB5-cp-Mzh"/>
                         <constraint firstItem="mrj-al-eUj" firstAttribute="top" secondItem="ytm-Cp-pCN" secondAttribute="top" constant="10" id="wtX-3h-y76"/>
                     </constraints>
@@ -88,6 +90,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

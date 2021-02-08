@@ -10,36 +10,16 @@ import UIKit
 
 private struct AndesBaseTooltipInternalConfig {
 
-    struct Positioning {
-        let maxWidth = CGFloat(240)
-     }
-
-    struct Drawing {
-        let cornerRadius = CGFloat(6)
-        let arrowHeight = CGFloat(5)
-        let arrowWidth = CGFloat(10)
-        let borderWidth = CGFloat(0)
-        let borderColor = UIColor.clear
-        let shadowColor = UIColor.gray
-        let shadowOffset = CGSize(width: 2, height: 2)
-        let shadowRadius = CGFloat(12)
-        let shadowOpacity = CGFloat(0.7)
-    }
-
     struct Animating {
-        let dismissTransform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        let showInitialTransform = CGAffineTransform(scaleX: 0, y: 0)
+        let dismissTransform = CGAffineTransform(scaleX: 0, y: 10)
+        let showInitialTransform = CGAffineTransform(translationX: 0, y: -10)
         let showFinalTransform = CGAffineTransform.identity
-        let springDamping = CGFloat(0.7)
-        let springVelocity = CGFloat(0.7)
         let showInitialAlpha = CGFloat(0)
         let dismissFinalAlpha = CGFloat(0)
-        let showDuration = 0.7
-        let dismissDuration = 0.7
+        let showDuration = 0.2
+        let dismissDuration = 0.2
     }
 
-    let drawing = Drawing()
-    let positioning = Positioning()
     let animating = Animating()
 }
 
@@ -47,38 +27,24 @@ extension AndesBaseTooltipView {
 
     func show(target targetView: UIView, withinSuperview superview: UIView) {
 
-        let initialTransform = internalConfig.animating.showInitialTransform
-        let finalTransform = internalConfig.animating.showFinalTransform
-        let initialAlpha = internalConfig.animating.showInitialAlpha
-
         presentingView = targetView
         arrange(withinSuperview: superview)
-
-        transform = initialTransform
-        alpha = initialAlpha
-
         superview.addSubview(self)
 
-        let animationDuration = internalConfig.animating.showDuration
-        let damping = internalConfig.animating.springDamping
-        let velocity = internalConfig.animating.springVelocity
+        transform = CGAffineTransform(translationX: 0, y: animationTransform)
+        alpha = 0
 
-        UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: {
-            self.transform = finalTransform
+        UIView.animate(withDuration: self.animationDuration, delay: 0, options: [.curveEaseInOut], animations: {
             self.alpha = 1
+            self.transform = .identity
         })
     }
 
     func dismiss(withCompletion completion: (() -> Void)? = nil) {
 
-        let damping = internalConfig.animating.springDamping
-        let velocity = internalConfig.animating.springVelocity
-        let dismissTransform = internalConfig.animating.dismissTransform
-        let dismissAlpha = internalConfig.animating.dismissFinalAlpha
-
-        UIView.animate(withDuration: internalConfig.animating.dismissDuration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: {
-            self.transform = dismissTransform
-            self.alpha = dismissAlpha
+        UIView.animate(withDuration: self.animationDuration, delay: 0, options: [.curveEaseInOut], animations: {
+            self.frame.origin.y += self.animationTransform
+            self.alpha = 0
         }) { (_) -> Void in
             completion?()
             self.removeFromSuperview()
@@ -102,13 +68,20 @@ class AndesBaseTooltipView: UIView {
     private let config: AndesTooltipViewConfig
     private let content: UIView
     private let internalConfig = AndesBaseTooltipInternalConfig()
+    let cornerRadius: CGFloat = 6
+    let arrowHeight: CGFloat = 8
+    let arrowWidth: CGFloat = 16
     var arrowPosition: AndesTooltipPosition = .left
+
+    // Animations properties
+    let animationDuration: TimeInterval = 0.2
+    let animationTransform: CGFloat = -10
 
     // MARK: - Lazy variables
     lazy var contentSize: CGSize = {
         let horizontalPriority = UILayoutPriority(750)
         let verticalPriority = UILayoutPriority(749)
-        let maxWidthSize = self.internalConfig.positioning.maxWidth
+        let maxWidthSize = config.maxWidth
         let targetSize = CGSize(width: maxWidthSize, height: 0)
 
         let candidateSize = content.systemLayoutSizeFitting(.zero)
@@ -128,7 +101,7 @@ class AndesBaseTooltipView: UIView {
 
     func getTipViewSize(position: AndesTooltipPosition) -> CGSize {
         let width = contentSize.width
-        let height = contentSize.height + internalConfig.drawing.arrowHeight
+        let height = contentSize.height + arrowHeight
         return CGSize(width: width, height: height)
     }
 
@@ -289,10 +262,6 @@ class AndesBaseTooltipView: UIView {
 
     fileprivate func drawBubble(_ bubbleFrame: CGRect, arrowPosition: AndesTooltipPosition, context: CGContext) {
 
-        let arrowWidth = internalConfig.drawing.arrowWidth
-        let arrowHeight = internalConfig.drawing.arrowHeight
-        let cornerRadius = internalConfig.drawing.cornerRadius
-
         let contourPath = CGMutablePath()
 
         contourPath.move(to: CGPoint(x: arrowTip.x, y: arrowTip.y))
@@ -420,10 +389,11 @@ class AndesBaseTooltipView: UIView {
 
     fileprivate func drawShadow() {
         self.layer.masksToBounds = false
-        self.layer.shadowColor = internalConfig.drawing.shadowColor.cgColor
-        self.layer.shadowOffset = internalConfig.drawing.shadowOffset
-        self.layer.shadowRadius = internalConfig.drawing.shadowRadius
-        self.layer.shadowOpacity = Float(internalConfig.drawing.shadowOpacity)
+        self.layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+//        self.layer.shadowColor = internalConfig.drawing.shadowColor.cgColor
+        self.layer.shadowOffset = config.shadowOffset
+        self.layer.shadowRadius = config.shadowRadius
+        self.layer.shadowOpacity = Float(config.shadowOpacity)
     }
 
     override open func draw(_ rect: CGRect) {
@@ -442,7 +412,7 @@ class AndesBaseTooltipView: UIView {
 
     private func setupContentView() {
 
-        let tipSize = self.internalConfig.drawing.arrowHeight
+        let tipSize = self.arrowHeight
 
         let extraSpacingLeft = self.arrowPosition == .right ? tipSize : 0
         let extraSpacingRight = self.arrowPosition == .left ? tipSize : 0
@@ -482,17 +452,17 @@ class AndesBaseTooltipView: UIView {
         case .top, .bottom:
 
             bubbleWidth = tipViewSize.width
-            bubbleHeight = tipViewSize.height - internalConfig.drawing.arrowHeight
+            bubbleHeight = tipViewSize.height - arrowHeight
 
             bubbleXOrigin = 0
-            bubbleYOrigin = arrowPosition == .top ? 0 : internalConfig.drawing.arrowHeight
+            bubbleYOrigin = arrowPosition == .top ? 0 : arrowHeight
 
         case .right, .left:
 
-            bubbleWidth = tipViewSize.width - internalConfig.drawing.arrowHeight
+            bubbleWidth = tipViewSize.width - arrowHeight
             bubbleHeight = tipViewSize.height
 
-            bubbleXOrigin = arrowPosition == .left ? 0 : internalConfig.drawing.arrowHeight
+            bubbleXOrigin = arrowPosition == .left ? 0 : arrowHeight
             bubbleYOrigin = 0
         }
 
