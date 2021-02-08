@@ -11,7 +11,6 @@ import UIKit
 private struct AndesBaseTooltipInternalConfig {
 
     struct Positioning {
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let maxWidth = CGFloat(240)
      }
 
@@ -128,17 +127,8 @@ class AndesBaseTooltipView: UIView {
     }()
 
     func getTipViewSize(position: AndesTooltipPosition) -> CGSize {
-
-        let width = self.contentSize.width +
-            self.internalConfig.positioning.contentInsets.left +
-            self.internalConfig.positioning.contentInsets.right -
-            0
-
-        let height = self.contentSize.height +
-            self.internalConfig.positioning.contentInsets.top +
-            self.internalConfig.positioning.contentInsets.bottom +
-            self.internalConfig.drawing.arrowHeight
-
+        let width = contentSize.width
+        let height = contentSize.height + internalConfig.drawing.arrowHeight
         return CGSize(width: width, height: height)
     }
 
@@ -464,19 +454,19 @@ class AndesBaseTooltipView: UIView {
         NSLayoutConstraint.activate([
             content.topAnchor.constraint(
                 equalTo: topAnchor,
-                constant: internalConfig.positioning.contentInsets.top + extraSpacingTop
+                constant: extraSpacingTop
             ),
             content.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
-                constant: -(internalConfig.positioning.contentInsets.right + extraSpacingRight)
+                constant: -extraSpacingRight
             ),
             content.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
-                constant: internalConfig.positioning.contentInsets.left + extraSpacingLeft
+                constant: extraSpacingLeft
             ),
             bottomAnchor.constraint(
                 equalTo: content.bottomAnchor,
-                constant: (internalConfig.positioning.contentInsets.bottom + extraSpacingBottom)
+                constant: extraSpacingBottom
             )
         ])
     }
@@ -510,7 +500,12 @@ class AndesBaseTooltipView: UIView {
     }
 
     private func getContentRect(from bubbleFrame: CGRect) -> CGRect {
-        return CGRect(x: bubbleFrame.origin.x + internalConfig.positioning.contentInsets.left, y: bubbleFrame.origin.y + internalConfig.positioning.contentInsets.top, width: contentSize.width, height: contentSize.height)
+        return CGRect(
+            x: bubbleFrame.origin.x,
+            y: bubbleFrame.origin.y,
+            width: contentSize.width,
+            height: contentSize.height
+        )
     }
 }
 
