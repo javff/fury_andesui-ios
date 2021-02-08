@@ -8,21 +8,6 @@
 import Foundation
 import UIKit
 
-private struct AndesBaseTooltipInternalConfig {
-
-    struct Animating {
-        let dismissTransform = CGAffineTransform(scaleX: 0, y: 10)
-        let showInitialTransform = CGAffineTransform(translationX: 0, y: -10)
-        let showFinalTransform = CGAffineTransform.identity
-        let showInitialAlpha = CGFloat(0)
-        let dismissFinalAlpha = CGFloat(0)
-        let showDuration = 0.2
-        let dismissDuration = 0.2
-    }
-
-    let animating = Animating()
-}
-
 extension AndesBaseTooltipView {
 
     func show(target targetView: UIView, withinSuperview superview: UIView) {
@@ -61,24 +46,26 @@ enum AndesTooltipPosition: CaseIterable {
 
 class AndesBaseTooltipView: UIView {
 
-    // MARK: - Variables
+    // MARK: - properties
 
-    fileprivate weak var presentingView: UIView?
-    fileprivate var arrowTip = CGPoint.zero
+    private weak var presentingView: UIView?
+    private var arrowTip = CGPoint.zero
     private let config: AndesTooltipViewConfig
     private let content: UIView
-    private let internalConfig = AndesBaseTooltipInternalConfig()
-    let cornerRadius: CGFloat = 6
-    let arrowHeight: CGFloat = 8
-    let arrowWidth: CGFloat = 16
-    var arrowPosition: AndesTooltipPosition = .left
+    private let cornerRadius: CGFloat = 6
+    private var bubblePosition: AndesTooltipPosition = .top
+
+    // arrow properties
+    private let arrowHeight: CGFloat = 8
+    private let arrowWidth: CGFloat = 16
 
     // Animations properties
-    let animationDuration: TimeInterval = 0.2
-    let animationTransform: CGFloat = -10
+    private let animationDuration: TimeInterval = 0.2
+    private let animationTransform: CGFloat = -10
 
-    // MARK: - Lazy variables
-    lazy var contentSize: CGSize = {
+    // MARK: - Lazy properties -
+
+    private lazy var contentSize: CGSize = {
         let horizontalPriority = UILayoutPriority(750)
         let verticalPriority = UILayoutPriority(749)
         let maxWidthSize = config.maxWidth
@@ -99,17 +86,15 @@ class AndesBaseTooltipView: UIView {
         )
     }()
 
-    func getTipViewSize(position: AndesTooltipPosition) -> CGSize {
-        let width = contentSize.width
-        let height = contentSize.height + arrowHeight
-        return CGSize(width: width, height: height)
-    }
-
     // MARK: - Initializer -
 
-    internal init (content: UIView, config: AndesTooltipViewConfig) {
+    internal init (
+        content: UIView,
+        position: AndesTooltipPosition = .top,
+        config: AndesTooltipViewConfig) {
         self.content = content
         self.config = config
+        self.bubblePosition = position
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.clear
     }
@@ -122,7 +107,7 @@ class AndesBaseTooltipView: UIView {
     fileprivate func computeFrame(arrowPosition position: AndesTooltipPosition, refViewFrame: CGRect, superviewFrame: CGRect) -> CGRect {
         let xOrigin: CGFloat
         let yOrigin: CGFloat
-        let tipViewSize = getTipViewSize(position: self.arrowPosition)
+        let tipViewSize = getTipViewSize(position: self.bubblePosition)
 
         switch position {
         case .bottom:
@@ -180,7 +165,7 @@ class AndesBaseTooltipView: UIView {
     fileprivate func arrange(withinSuperview superview: UIView) {
 
         guard let presentingView = presentingView else { return }
-        var position = arrowPosition
+        var position = bubblePosition
         let refViewFrame = presentingView.convert(presentingView.bounds, to: superview)
 
         let superviewFrame: CGRect
@@ -218,7 +203,7 @@ class AndesBaseTooltipView: UIView {
             if isFrameValid(frame, forRefViewFrame: refViewFrame, superViewFrame: superViewFrame) {
                 newFrame = frame
                 newPosition = value
-                arrowPosition = value
+                bubblePosition = value
                 break
             }
         }
@@ -251,7 +236,7 @@ class AndesBaseTooltipView: UIView {
                 arrowTipYOrigin = abs(frame.y - refViewFrame.y) + refViewFrame.height / 2
             }
 
-            let xPosition = arrowPosition == .right ? 0 : tipViewSize.width
+            let xPosition = bubblePosition == .right ? 0 : tipViewSize.width
 
             return CGPoint(x: xPosition, y: arrowTipYOrigin)
 
@@ -403,7 +388,7 @@ class AndesBaseTooltipView: UIView {
         let bubbleFrame = getBubbleFrame()
         context.saveGState()
         drawBubble(bubbleFrame,
-                   arrowPosition: arrowPosition,
+                   arrowPosition: bubblePosition,
                    context: context)
         setupContentView()
         drawShadow()
@@ -414,10 +399,10 @@ class AndesBaseTooltipView: UIView {
 
         let tipSize = self.arrowHeight
 
-        let extraSpacingLeft = self.arrowPosition == .right ? tipSize : 0
-        let extraSpacingRight = self.arrowPosition == .left ? tipSize : 0
-        let extraSpacingTop = self.arrowPosition == .bottom ? tipSize : 0
-        let extraSpacingBottom = self.arrowPosition == .top ? tipSize : 0
+        let extraSpacingLeft = self.bubblePosition == .right ? tipSize : 0
+        let extraSpacingRight = self.bubblePosition == .left ? tipSize : 0
+        let extraSpacingTop = self.bubblePosition == .bottom ? tipSize : 0
+        let extraSpacingBottom = self.bubblePosition == .top ? tipSize : 0
 
         addSubview(content)
         content.translatesAutoresizingMaskIntoConstraints = false
@@ -446,23 +431,23 @@ class AndesBaseTooltipView: UIView {
         let bubbleHeight: CGFloat
         let bubbleXOrigin: CGFloat
         let bubbleYOrigin: CGFloat
-        let tipViewSize = self.getTipViewSize(position: arrowPosition)
+        let tipViewSize = self.getTipViewSize(position: bubblePosition)
 
-        switch arrowPosition {
+        switch bubblePosition {
         case .top, .bottom:
 
             bubbleWidth = tipViewSize.width
             bubbleHeight = tipViewSize.height - arrowHeight
 
             bubbleXOrigin = 0
-            bubbleYOrigin = arrowPosition == .top ? 0 : arrowHeight
+            bubbleYOrigin = bubblePosition == .top ? 0 : arrowHeight
 
         case .right, .left:
 
             bubbleWidth = tipViewSize.width - arrowHeight
             bubbleHeight = tipViewSize.height
 
-            bubbleXOrigin = arrowPosition == .left ? 0 : arrowHeight
+            bubbleXOrigin = bubblePosition == .left ? 0 : arrowHeight
             bubbleYOrigin = 0
         }
 
@@ -476,6 +461,12 @@ class AndesBaseTooltipView: UIView {
             width: contentSize.width,
             height: contentSize.height
         )
+    }
+
+    private func getTipViewSize(position: AndesTooltipPosition) -> CGSize {
+        let width = contentSize.width
+        let height = contentSize.height + arrowHeight
+        return CGSize(width: width, height: height)
     }
 }
 

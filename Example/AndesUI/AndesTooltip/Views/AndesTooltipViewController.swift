@@ -8,7 +8,6 @@
 
 import UIKit
 import AndesUI
-import EasyTipView
 
 class AndesTooltipViewController: UIViewController {
 
