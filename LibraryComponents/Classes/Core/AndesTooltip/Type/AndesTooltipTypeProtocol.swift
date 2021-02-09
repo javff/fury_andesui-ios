@@ -11,6 +11,7 @@ import Foundation
 
 internal protocol AndesTooltipTypeProtocol {
     var textColor: UIColor { get }
+    var closeButtonColor: UIColor { get }
     var backgroundColor: UIColor { get }
     var maxWidth: CGFloat { get }
     var shadowOffset: CGSize { get }

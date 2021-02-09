@@ -11,7 +11,7 @@ import Foundation
 
 @objc public class AndesTooltip: UIView {
     internal var contentView: AndesTooltipView!
-    var type: AndesTooltipType = .light
+    var type: AndesTooltipType = .highlight
 
     let title: String?
     let content: String
@@ -48,6 +48,6 @@ import Foundation
     /// Should return a view depending on which modifier is selected
     private func provideView() -> AndesTooltipView {
         let config = AndesTooltipViewConfigFactory.provideInternalConfig(tooltip: self)
-        return AndesTooltipViewText(withConfig: config)
+        return AndesTooltipViewDefault(withConfig: config)
     }
 }

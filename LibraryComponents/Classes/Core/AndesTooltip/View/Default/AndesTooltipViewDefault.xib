@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesTooltipViewText" customModule="AndesUI">
             <connections>
                 <outlet property="closeButton" destination="yGf-3c-umw" id="Ktj-8s-5gE"/>
+                <outlet property="closeButtonHeightConstraint" destination="gtw-He-lew" id="26G-Et-fTY"/>
                 <outlet property="componentView" destination="iN0-l3-epB" id="pJc-XA-8DK"/>
                 <outlet property="contentLabel" destination="xpo-Rk-sfr" id="oL7-j1-fdZ"/>
                 <outlet property="titleLabel" destination="NXB-nA-49g" id="4HS-Xy-LcN"/>
@@ -44,10 +45,8 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-3c-umw">
                             <rect key="frame" x="382" y="0.0" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="0fT-bj-V8y"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="QUY-vb-gBg"/>
+                                <constraint firstAttribute="width" secondItem="yGf-3c-umw" secondAttribute="height" multiplier="1:1" id="Ocf-kW-Zss"/>
                                 <constraint firstAttribute="height" constant="32" id="gtw-He-lew"/>
-                                <constraint firstAttribute="width" constant="32" id="z9I-qf-FTd"/>
                             </constraints>
                             <state key="normal" image="andes_ui_close_16"/>
                             <connections>
@@ -75,7 +74,7 @@
                 <constraint firstItem="dMI-ud-gfk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="fM2-Ns-Yfd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="188.40579710144928" y="209.26339285714286"/>
+            <point key="canvasLocation" x="-419" y="135"/>
         </view>
     </objects>
     <resources>

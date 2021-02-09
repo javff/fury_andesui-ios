@@ -15,6 +15,7 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var closeButtonHeightConstraint: NSLayoutConstraint!
 
     var config: AndesTooltipViewConfig
 
@@ -59,22 +60,38 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
         updateView()
     }
 
-    /// Override this method on each Badge View to setup its unique components
     func updateView() {
+        contentLabel.text = config.content
+        contentLabel.setAndesStyle(style: config.contentStyle)
+        renderTitleIfNeeded()
+        renderCloseButtonIfNeeded()
+    }
+
+    private func renderTitleIfNeeded() {
+        guard let title = config.title else {
+            titleLabel.removeFromSuperview()
+            return
+        }
+
+        titleLabel.text = title
+        titleLabel.setAndesStyle(style: config.titleStyle)
+    }
+
+    private func renderCloseButtonIfNeeded() {
+        if !config.isDismissable {
+            hideCloseButton()
+            return
+
+        }
         let closeIcon = AndesIcons.close16
         AndesIconsProvider.loadIcon(name: closeIcon) { image in
             self.closeButton.setImage(image, for: .normal)
+            self.closeButton.tintColor = config.closeButtonColor
         }
+    }
 
-        if config.title == nil {
-            self.titleLabel.removeFromSuperview()
-        }
-
-        self.titleLabel.text = config.title
-        self.contentLabel.text = config.content
-        self.titleLabel.textColor = config.textColor
-        self.contentLabel.textColor = config.textColor
-
+    private func hideCloseButton() {
+        self.closeButtonHeightConstraint.constant = 0
     }
 
     func pinXibViewToSelf() {

@@ -45,7 +45,7 @@ class AndesTooltipViewController: UIViewController {
 
     @IBAction func centerButtonTapped(_ sender: UIButton) {
         let xx = AndesTooltip(
-            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
+            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: false)
         xx.show(in: sender, within: contentView)
     }
 }

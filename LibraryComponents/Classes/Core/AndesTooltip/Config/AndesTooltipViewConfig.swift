@@ -12,16 +12,33 @@ import Foundation
 /// used to define the ui of internal AndesTooltip views
 internal struct AndesTooltipViewConfig {
 
-    var title: String?
-    var content: String
-    var isDismissable: Bool
+    let title: String?
+    let content: String
+    let isDismissable: Bool
 
-    var textColor: UIColor
+    let textColor: UIColor
     let backgroundColor: UIColor
+    let closeButtonColor: UIColor
     let maxWidth: CGFloat
     let shadowOffset: CGSize
     let shadowRadius: CGFloat
     let shadowOpacity: CGFloat
+
+    lazy var titleStyle: AndesFontStyle = {
+        return AndesFontStyle(
+            textColor: self.textColor,
+            font: AndesStyleSheetManager.styleSheet.semiboldSystemFontOfSize(size: 16),
+            sketchLineHeight: 20
+        )
+    }()
+
+    lazy var contentStyle: AndesFontStyle = {
+        return AndesFontStyle(
+            textColor: self.textColor,
+            font: AndesStyleSheetManager.styleSheet.regularSystemFont(size: 14),
+            sketchLineHeight: 18
+        )
+    }()
 
     init(type: AndesTooltipTypeProtocol,
          title: String?,
@@ -33,6 +50,7 @@ internal struct AndesTooltipViewConfig {
         shadowRadius = type.shadowRadius
         shadowOpacity = type.shadowOpacity
         textColor = type.textColor
+        closeButtonColor = type.closeButtonColor
 
         self.title = title
         self.content = content

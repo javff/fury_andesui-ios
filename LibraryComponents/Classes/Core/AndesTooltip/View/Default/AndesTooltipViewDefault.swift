@@ -9,11 +9,11 @@
 
 import Foundation
 
-class AndesTooltipViewText: AndesTooltipAbstractView {
+class AndesTooltipViewDefault: AndesTooltipAbstractView {
 
     override func loadNib() {
         let bundle = AndesBundle.bundle()
-        bundle.loadNibNamed("AndesTooltipViewText", owner: self, options: nil)
+        bundle.loadNibNamed("AndesTooltipViewDefault", owner: self, options: nil)
     }
 
     override func updateView() {
