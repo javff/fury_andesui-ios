@@ -20,29 +20,32 @@ class AndesTooltipViewController: UIViewController {
     }
 
     @IBAction func rightBottomButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip()
+        let xx = AndesTooltip(
+            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func leftBottomButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip()
+        let xx = AndesTooltip(
+            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func rightTopButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip()
+        let xx = AndesTooltip(
+            title: nil, content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func leftTopButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip()
+        let xx = AndesTooltip(
+            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
         xx.show(in: sender, within: contentView)
-//        let asy = EasyTipView(text: "Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum Lorem it sum")
-//        asy.show(forView: sender)
     }
 
     @IBAction func centerButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip()
+        let xx = AndesTooltip(
+            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
         xx.show(in: sender, within: contentView)
     }
 }

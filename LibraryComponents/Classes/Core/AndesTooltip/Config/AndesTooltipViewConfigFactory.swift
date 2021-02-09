@@ -10,10 +10,15 @@
 import Foundation
 
 internal class AndesTooltipViewConfigFactory {
-    static func provideInternalConfig(type: AndesTooltipType) -> AndesTooltipViewConfig {
-        let typeIns = AndesTooltipTypeFactory.provide(type)
+    class func provideInternalConfig(tooltip: AndesTooltip) -> AndesTooltipViewConfig {
+        let typeIns = AndesTooltipTypeFactory.provide(tooltip.type)
 
-        let config = AndesTooltipViewConfig(type: typeIns)
+        let config = AndesTooltipViewConfig(
+            type: typeIns,
+            title: tooltip.title,
+            content: tooltip.content,
+            isDismissable: tooltip.isDismissable
+        )
 
         return config
     }

@@ -25,13 +25,6 @@ class ProgressIndicatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupObjcCase()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            let tooltip = AndesTooltip()
-            tooltip.show(in: self.progressIndicatorLargeWithText, within: self.scrollView)
-        }
-
-        //        tooltip.show(in: disabledAndesButton, within: self.disabledAndesButton.superview!)
     }
 
     override func viewWillAppear(_ animated: Bool) {

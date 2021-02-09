@@ -11,31 +11,26 @@ import Foundation
 
 @objc public class AndesTooltip: UIView {
     internal var contentView: AndesTooltipView!
+    var type: AndesTooltipType = .light
 
-    @objc public var type: AndesTooltipType = .highlight {
-        didSet {
-            updateContentView()
-        }
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
+    let title: String?
+    let content: String
+    let isDismissable: Bool
 
     public func show(in view: UIView, within superView: UIView) {
         self.contentView.show(in: view, within: superView)
     }
 
-    @objc public init(type: AndesTooltipType) {
+    public init(title: String?, content: String, isDismissable: Bool = true) {
+        self.content = content
+        self.title = title
+        self.isDismissable = isDismissable
         super.init(frame: .zero)
-        self.type = type
         setup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func setup() {
@@ -50,37 +45,9 @@ import Foundation
         contentView.pinToSuperview()
     }
 
-    /// Check if view needs to be redrawn, and then update it. This method should be called on all modifiers that may need to change which internal view should be rendered
-    private func reDrawContentViewIfNeededThenUpdate() {
-        let newView = provideView()
-        if Swift.type(of: newView) !== Swift.type(of: contentView) {
-            contentView.removeFromSuperview()
-            drawContentView(with: newView)
-        }
-        updateContentView()
-    }
-
-    private func updateContentView() {
-        let config = AndesTooltipViewConfigFactory.provideInternalConfig(type: self.type)
-        contentView.update(withConfig: config)
-    }
-
     /// Should return a view depending on which modifier is selected
     private func provideView() -> AndesTooltipView {
-        let config = AndesTooltipViewConfigFactory.provideInternalConfig(type: self.type)
+        let config = AndesTooltipViewConfigFactory.provideInternalConfig(tooltip: self)
         return AndesTooltipViewText(withConfig: config)
-    }
-}
-
-// MARK: - IB interface
-public extension AndesTooltip {
-    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'type' instead.")
-    @IBInspectable var ibType: String {
-        set(val) {
-            self.type = AndesTooltipType.checkValidEnum(property: "IB type", key: val)
-        }
-        get {
-            return self.type.toString()
-        }
     }
 }
