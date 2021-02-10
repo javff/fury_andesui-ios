@@ -20,32 +20,33 @@ class AndesTooltipViewController: UIViewController {
     }
 
     @IBAction func rightBottomButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip(
-            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
+        let xx = AndesTooltip(lightStyle: "Lorem it sum")
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func leftBottomButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip(
-            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
+        let action = AndesTooltipAction(text: "link action", onPressed: {
+
+        })
+        let xx = AndesTooltip(lightStyle: "lorem it sum lorem it sumlorem it sumlorem it sumlorem it sumlorem it sum", title: "My title ", isDismissable: true, linkAction: action)
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func rightTopButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip(
-            title: nil, content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
+        let xx = AndesTooltip(lightStyle: "Lorem it sum")
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func leftTopButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip(
-            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: true)
+        let xx = AndesTooltip(lightStyle: "sum Lorem it fin sum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it fin")
         xx.show(in: sender, within: contentView)
     }
 
     @IBAction func centerButtonTapped(_ sender: UIButton) {
-        let xx = AndesTooltip(
-            title: "My tooltip title", content: "Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum", isDismissable: false)
+        let action = AndesTooltipAction(text: "link action", onPressed: {
+
+        })
+        let xx = AndesTooltip(lightStyle: "sum Lorem it fin sum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it fin ", title: "My title", isDismissable: true, primaryQuietAction: action)
         xx.show(in: sender, within: contentView)
     }
 }

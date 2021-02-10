@@ -11,20 +11,97 @@ import Foundation
 
 @objc public class AndesTooltip: UIView {
     internal var contentView: AndesTooltipView!
-    var type: AndesTooltipType = .highlight
 
+    let type: AndesTooltipType
     let title: String?
     let content: String
     let isDismissable: Bool
+
+    var primaryAction: AnesTooltipInternalAction?
+    var secondaryAction: AnesTooltipInternalAction?
 
     public func show(in view: UIView, within superView: UIView) {
         self.contentView.show(in: view, within: superView)
     }
 
-    public init(title: String?, content: String, isDismissable: Bool = true) {
+    public convenience init(
+        lightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true
+    ) {
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light)
+    }
+
+    public convenience init(
+        lightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryLoudAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryLoudAction, type: .loud)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        lightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryQuietAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryQuietAction, type: .quiet)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        lightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        linkAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: linkAction, type: .link)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        lightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryLoudAction: AndesTooltipAction,
+        secondaryTransparentAction: AndesTooltipAction
+
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryLoudAction, type: .loud)
+        let secondaryAction = AnesTooltipInternalAction(action: secondaryTransparentAction, type: .transparent)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light, primaryAction: primaryAction, secondaryAction: secondaryAction)
+    }
+
+    public convenience init(
+        lightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryQuietAction: AndesTooltipAction,
+        secondaryQuietAction: AndesTooltipAction
+
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryQuietAction, type: .quiet)
+        let secondaryAction = AnesTooltipInternalAction(action: secondaryQuietAction, type: .quiet)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light, primaryAction: primaryAction, secondaryAction: secondaryAction)
+    }
+
+    private init(
+        content: String,
+        title: String?,
+        isDismissable: Bool,
+        type: AndesTooltipType,
+        primaryAction: AnesTooltipInternalAction? = nil,
+        secondaryAction: AnesTooltipInternalAction? = nil) {
+
         self.content = content
         self.title = title
         self.isDismissable = isDismissable
+        self.type = type
+        self.primaryAction = primaryAction
+        self.secondaryAction = secondaryAction
         super.init(frame: .zero)
         setup()
     }
@@ -48,6 +125,13 @@ import Foundation
     /// Should return a view depending on which modifier is selected
     private func provideView() -> AndesTooltipView {
         let config = AndesTooltipViewConfigFactory.provideInternalConfig(tooltip: self)
+
+        let withActions = primaryAction != nil || secondaryAction != nil
+
+        if withActions {
+            return AndesTooltipViewLink(withConfig: config)
+        }
+
         return AndesTooltipViewDefault(withConfig: config)
     }
 }

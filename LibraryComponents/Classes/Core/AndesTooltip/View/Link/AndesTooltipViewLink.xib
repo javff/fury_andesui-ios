@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesTooltipViewLink" customModule="AndesUI">
+            <connections>
+                <outlet property="closeButton" destination="yj2-vv-Nke" id="ONh-8c-v9R"/>
+                <outlet property="closeButtonHeightConstraint" destination="Gkf-1y-Rag" id="Ym7-e0-A5U"/>
+                <outlet property="componentView" destination="k3e-Ne-1CV" id="zqW-7f-ZGl"/>
+                <outlet property="contentLabel" destination="kSg-j6-1zR" id="VZR-hu-iiE"/>
+                <outlet property="primaryAction" destination="drD-DX-R6G" id="CuS-w3-6gl"/>
+                <outlet property="secondaryAction" destination="HxK-jf-bpZ" id="ueL-dd-2Og"/>
+                <outlet property="titleLabel" destination="DLp-iZ-abs" id="JOf-YS-Ln4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="k3e-Ne-1CV">
+            <rect key="frame" x="0.0" y="0.0" width="446" height="177"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1N-MJ-k9j">
+                    <rect key="frame" x="16" y="16" width="394" height="145"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9Vt-eI-uBO">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="39"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-iZ-abs">
+                                    <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSg-j6-1zR">
+                                    <rect key="frame" x="0.0" y="24.5" width="394" height="14.5"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="31F-6C-4Ed">
+                            <rect key="frame" x="0.0" y="47" width="394" height="80"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="drD-DX-R6G" customClass="AndesButton" customModule="AndesUI">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="80"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="749" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="HxK-jf-bpZ" customClass="AndesButton" customModule="AndesUI">
+                                    <rect key="frame" x="204" y="0.0" width="190" height="80"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="9Vt-eI-uBO" secondAttribute="trailing" id="QRf-17-nxK"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="31F-6C-4Ed" secondAttribute="trailing" id="VOX-pV-HmO"/>
+                        <constraint firstItem="31F-6C-4Ed" firstAttribute="top" secondItem="9Vt-eI-uBO" secondAttribute="bottom" constant="8" id="lTo-xA-ncK"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="31F-6C-4Ed" secondAttribute="bottom" id="lwQ-XH-5Vg"/>
+                        <constraint firstItem="9Vt-eI-uBO" firstAttribute="top" secondItem="L1N-MJ-k9j" secondAttribute="top" id="npb-1o-hvy"/>
+                        <constraint firstItem="9Vt-eI-uBO" firstAttribute="leading" secondItem="L1N-MJ-k9j" secondAttribute="leading" id="tIr-5O-VMW"/>
+                        <constraint firstItem="31F-6C-4Ed" firstAttribute="leading" secondItem="L1N-MJ-k9j" secondAttribute="leading" id="zUG-vh-cfc"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yj2-vv-Nke">
+                    <rect key="frame" x="412" y="2" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="yj2-vv-Nke" secondAttribute="height" multiplier="1:1" id="A6i-Sa-YkP"/>
+                        <constraint firstAttribute="height" constant="32" id="Gkf-1y-Rag"/>
+                    </constraints>
+                    <state key="normal" image="andes_ui_close_16"/>
+                    <connections>
+                        <action selector="closeButtonTapped" destination="-1" eventType="touchUpInside" id="MAh-Cj-zF1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Hac-p2-yMN"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="L1N-MJ-k9j" firstAttribute="leading" secondItem="Hac-p2-yMN" secondAttribute="leading" constant="16" id="0xO-cM-31i"/>
+                <constraint firstItem="Hac-p2-yMN" firstAttribute="trailing" secondItem="yj2-vv-Nke" secondAttribute="trailing" constant="2" id="3PP-Vq-Hpb"/>
+                <constraint firstItem="Hac-p2-yMN" firstAttribute="trailing" secondItem="L1N-MJ-k9j" secondAttribute="trailing" priority="750" constant="16" id="8Np-wu-uup"/>
+                <constraint firstItem="yj2-vv-Nke" firstAttribute="top" secondItem="k3e-Ne-1CV" secondAttribute="top" constant="2" id="AR6-Tz-o4q"/>
+                <constraint firstAttribute="bottom" secondItem="L1N-MJ-k9j" secondAttribute="bottom" constant="16" id="GZW-fh-5p0"/>
+                <constraint firstItem="yj2-vv-Nke" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="31F-6C-4Ed" secondAttribute="trailing" id="IkI-Wi-3ZN"/>
+                <constraint firstItem="yj2-vv-Nke" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k3e-Ne-1CV" secondAttribute="leading" id="MkO-gP-wzv"/>
+                <constraint firstItem="yj2-vv-Nke" firstAttribute="leading" secondItem="L1N-MJ-k9j" secondAttribute="trailing" priority="999" constant="2" id="oB2-Fj-6ZB"/>
+                <constraint firstItem="L1N-MJ-k9j" firstAttribute="top" secondItem="k3e-Ne-1CV" secondAttribute="top" constant="16" id="sUq-X0-Lxb"/>
+                <constraint firstItem="Hac-p2-yMN" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yj2-vv-Nke" secondAttribute="bottom" id="zvP-E6-qpB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-549.27536231884062" y="53.90625"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="andes_ui_close_16" width="16" height="16"/>
+    </resources>
+</document>

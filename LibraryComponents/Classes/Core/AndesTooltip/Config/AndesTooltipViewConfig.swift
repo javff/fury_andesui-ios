@@ -24,6 +24,9 @@ internal struct AndesTooltipViewConfig {
     let shadowRadius: CGFloat
     let shadowOpacity: CGFloat
 
+    var primaryActionConfig: AndesButtonViewConfig?
+    var secondaryActionConfig: AndesButtonViewConfig?
+
     lazy var titleStyle: AndesFontStyle = {
         return AndesFontStyle(
             textColor: self.textColor,
@@ -43,7 +46,9 @@ internal struct AndesTooltipViewConfig {
     init(type: AndesTooltipTypeProtocol,
          title: String?,
          content: String,
-         isDismissable: Bool) {
+         isDismissable: Bool,
+         primaryActionConfig: AndesButtonViewConfig?,
+         secondaryActionConfig: AndesButtonViewConfig?) {
         backgroundColor = type.backgroundColor
         maxWidth = type.maxWidth
         shadowOffset = type.shadowOffset
@@ -55,5 +60,7 @@ internal struct AndesTooltipViewConfig {
         self.title = title
         self.content = content
         self.isDismissable = isDismissable
+        self.primaryActionConfig = primaryActionConfig
+        self.secondaryActionConfig = secondaryActionConfig
     }
 }

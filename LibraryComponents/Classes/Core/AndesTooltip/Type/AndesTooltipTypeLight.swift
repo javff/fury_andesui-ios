@@ -12,7 +12,7 @@ import Foundation
 class AndesTooltipTypeLight: AndesTooltipTypeProtocol {
     var textColor: UIColor = UIColor.Andes.graySolid800
     var backgroundColor: UIColor = UIColor.Andes.white
-    var maxWidth: CGFloat = 240
+    var maxWidth: CGFloat = 260
     var shadowOffset: CGSize = CGSize(width: 0, height: 0)
     var shadowRadius: CGFloat = 6
     var shadowOpacity: CGFloat = 0.3
