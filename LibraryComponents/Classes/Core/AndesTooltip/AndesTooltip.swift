@@ -24,6 +24,7 @@ import Foundation
         self.contentView.show(in: view, within: superView)
     }
 
+    // MARK: - Light variants
     public convenience init(
         lightStyle content: String,
         title: String? = nil,
@@ -86,6 +87,90 @@ import Foundation
         let primaryAction = AnesTooltipInternalAction(action: primaryQuietAction, type: .quiet)
         let secondaryAction = AnesTooltipInternalAction(action: secondaryQuietAction, type: .quiet)
         self.init(content: content, title: title, isDismissable: isDismissable, type: .light, primaryAction: primaryAction, secondaryAction: secondaryAction)
+    }
+
+    // MARK: - Dark style variants
+    public convenience init(
+        darkStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true
+    ) {
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light)
+    }
+
+    public convenience init(
+        darkStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryLoudAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryLoudAction, type: .loud)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .dark, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        darkStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        linkAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: linkAction, type: .link)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .dark, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        darkStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryLoudAction: AndesTooltipAction,
+        secondaryTransparentAction: AndesTooltipAction
+
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryLoudAction, type: .loud)
+        let secondaryAction = AnesTooltipInternalAction(action: secondaryTransparentAction, type: .transparent)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .dark, primaryAction: primaryAction, secondaryAction: secondaryAction)
+    }
+
+    // MARK: - Highlight style variants
+    public convenience init(
+        highlightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true
+    ) {
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .light)
+    }
+
+    public convenience init(
+        highlightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryLoudAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryLoudAction, type: .loud)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .highlight, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        highlightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        linkAction: AndesTooltipAction
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: linkAction, type: .link)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .highlight, primaryAction: primaryAction)
+    }
+
+    public convenience init(
+        highlightStyle content: String,
+        title: String? = nil,
+        isDismissable: Bool = true,
+        primaryLoudAction: AndesTooltipAction,
+        secondaryTransparentAction: AndesTooltipAction
+
+    ) {
+        let primaryAction = AnesTooltipInternalAction(action: primaryLoudAction, type: .loud)
+        let secondaryAction = AnesTooltipInternalAction(action: secondaryTransparentAction, type: .transparent)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .highlight, primaryAction: primaryAction, secondaryAction: secondaryAction)
     }
 
     private init(
