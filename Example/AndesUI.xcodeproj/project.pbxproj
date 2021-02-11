@@ -131,6 +131,9 @@
 		E201BF4825BB508E00D48937 /* AndesTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201BF4625BB508E00D48937 /* AndesTooltipViewController.swift */; };
 		E201BF4925BB508E00D48937 /* AndesTooltipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E201BF4725BB508E00D48937 /* AndesTooltipViewController.xib */; };
 		E201BF5025BB50C100D48937 /* TooltipRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201BF4F25BB50C100D48937 /* TooltipRouter.swift */; };
+		E212FF9C25D44C3300F2AEE0 /* TooltipActionUseCase.xib in Resources */ = {isa = PBXBuildFile; fileRef = E212FF9B25D44C3300F2AEE0 /* TooltipActionUseCase.xib */; };
+		E212FFA125D44C4200F2AEE0 /* TooltipActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212FFA025D44C4200F2AEE0 /* TooltipActionUseCase.swift */; };
+		E212FFB025D487B700F2AEE0 /* TooltipActionLightUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212FFAF25D487B400F2AEE0 /* TooltipActionLightUseCase.swift */; };
 		E230FDC12580F71800D6ED78 /* ProgressIndicatorObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */; };
 		E230FDC22580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */; };
 		E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */; };
@@ -344,6 +347,9 @@
 		E201BF4625BB508E00D48937 /* AndesTooltipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndesTooltipViewController.swift; sourceTree = "<group>"; };
 		E201BF4725BB508E00D48937 /* AndesTooltipViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AndesTooltipViewController.xib; sourceTree = "<group>"; };
 		E201BF4F25BB50C100D48937 /* TooltipRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipRouter.swift; sourceTree = "<group>"; };
+		E212FF9B25D44C3300F2AEE0 /* TooltipActionUseCase.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TooltipActionUseCase.xib; sourceTree = "<group>"; };
+		E212FFA025D44C4200F2AEE0 /* TooltipActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipActionUseCase.swift; sourceTree = "<group>"; };
+		E212FFAF25D487B400F2AEE0 /* TooltipActionLightUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipActionLightUseCase.swift; sourceTree = "<group>"; };
 		E230FDBE2580F71800D6ED78 /* ProgressIndicatorObjcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressIndicatorObjcViewController.h; sourceTree = "<group>"; };
 		E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressIndicatorObjcViewController.m; sourceTree = "<group>"; };
 		E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorObjcViewController.xib; sourceTree = "<group>"; };
@@ -1044,6 +1050,7 @@
 		E201BF4D25BB509900D48937 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E212FF9A25D4473500F2AEE0 /* UseCases */,
 				E201BF4625BB508E00D48937 /* AndesTooltipViewController.swift */,
 				E201BF4725BB508E00D48937 /* AndesTooltipViewController.xib */,
 			);
@@ -1056,6 +1063,32 @@
 				E201BF4F25BB50C100D48937 /* TooltipRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		E212FF9A25D4473500F2AEE0 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				E212FFBA25D48C7000F2AEE0 /* cases */,
+				E212FFB925D48C6800F2AEE0 /* Views */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		E212FFB925D48C6800F2AEE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E212FF9B25D44C3300F2AEE0 /* TooltipActionUseCase.xib */,
+				E212FFA025D44C4200F2AEE0 /* TooltipActionUseCase.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E212FFBA25D48C7000F2AEE0 /* cases */ = {
+			isa = PBXGroup;
+			children = (
+				E212FFAF25D487B400F2AEE0 /* TooltipActionLightUseCase.swift */,
+			);
+			path = cases;
 			sourceTree = "<group>";
 		};
 		E2C015772575D218001B89C3 /* ProgressIndicator */ = {
@@ -1361,6 +1394,7 @@
 				F8249D0A24ABCAC8002A6456 /* AndesRadioButtonViewController.xib in Resources */,
 				F0AC4E51255EE400003B364C /* DropdownViewController.xib in Resources */,
 				8634C9E924AB774700DB7B9F /* SnackbarObjCViewController.xib in Resources */,
+				E212FF9C25D44C3300F2AEE0 /* TooltipActionUseCase.xib in Resources */,
 				9C2FFC6B23EDB1A50016292E /* whats_new.html in Resources */,
 				F830F8872494127C0043D5AF /* AndesCheckboxViewController.xib in Resources */,
 				9C9B5A8823ECB08D0007234B /* Localizable.strings in Resources */,
@@ -1515,6 +1549,7 @@
 				86A1E3112481E56300B59D1D /* TagObjCViewController.m in Sources */,
 				90530B07242BF9ED005E056A /* BadgesRouter.swift in Sources */,
 				8617BD1F2499B6570071319C /* SnackbarViewController.swift in Sources */,
+				E212FFB025D487B700F2AEE0 /* TooltipActionLightUseCase.swift in Sources */,
 				023ADCEC24ACD4050076C3F3 /* ThumbnailObjCViewController.m in Sources */,
 				CE78E755252E2E9B00AF47F3 /* TextFieldsCodeObjCViewController.m in Sources */,
 				6A3C9CFD23C692B6007D0C8B /* HomeViewController.swift in Sources */,
@@ -1530,6 +1565,7 @@
 				E662DEB1254B300900A86D10 /* BottomSheetRouter.swift in Sources */,
 				F05BF6A9257551F600F325E0 /* DropDownObjcViewController.m in Sources */,
 				F830F883249400020043D5AF /* CheckboxRouter.swift in Sources */,
+				E212FFA125D44C4200F2AEE0 /* TooltipActionUseCase.swift in Sources */,
 				86D656B5248FF79500E62C1E /* AndesDemoColor.swift in Sources */,
 				BADFA6A025CC81D900165DFE /* AndesBadgeExtensionViewControllerMock.swift in Sources */,
 				6D2152F3241C080C001CEA8D /* TextFieldObjCViewController.m in Sources */,
