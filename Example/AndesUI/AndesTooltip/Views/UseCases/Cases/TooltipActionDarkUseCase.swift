@@ -1,27 +1,27 @@
 //
-//  TooltipActionLightUseCase.swift
+//  TooltipActionDarkUseCase.swift
 //  AndesUI-demoapp
 //
-//  Created by Juan Andres Vasquez Ferrer on 10-02-21.
+//  Created by Juan Andres Vasquez Ferrer on 11-02-21.
 //  Copyright © 2021 MercadoLibre. All rights reserved.
 //
 
 import Foundation
 import AndesUI
 
-class TooltipLightPrimaryCases: TooltipActionUseCaseDataSource {
+class TooltipActionDarkUseCase: TooltipActionUseCaseDataSource {
 
     func titleForType() -> String {
         return "Primary Action"
     }
 
     func supportTypes() -> [TooltipActionType] {
-        return [.loud, .quiet, .link]
+        return [.loud, .link]
     }
 
 }
 
-class TooltipLightSecondaryCases: TooltipActionUseCaseDataSource {
+class TooltipDarkSecondaryCase: TooltipActionUseCaseDataSource {
 
     let primaryAction: TooltipActionType
 
@@ -40,14 +40,14 @@ class TooltipLightSecondaryCases: TooltipActionUseCaseDataSource {
         case .link:
             return []
         case .quiet:
-            return [.quiet]
+            return []
         case .transparent:
             return []
         }
     }
 }
 
-class TooltipLightFactory: TooltipAbstractFactory {
+class TooltipDarkFactory: TooltipAbstractFactory {
 
     func buildTooltip(using showCase: TooltipDataShowCase) -> AndesTooltip? {
         guard showCase.primaryActionStyle != nil,
@@ -65,7 +65,7 @@ class TooltipLightFactory: TooltipAbstractFactory {
     }
 
     func buildWithoutAction(using showCase: TooltipDataShowCase) -> AndesTooltip {
-        return AndesTooltip(lightStyle: showCase.content, title: showCase.title, isDismissable: showCase.isDissmisable)
+        return AndesTooltip(darkStyle: showCase.content, title: showCase.title, isDismissable: showCase.isDissmisable)
     }
 
     func buildWithPrimaryActionOnly(using showCase: TooltipDataShowCase) -> AndesTooltip? {
@@ -73,7 +73,7 @@ class TooltipLightFactory: TooltipAbstractFactory {
               let primaryActionText = showCase.primayActionText else { return nil }
 
         if primaryActionStyle == .link {
-            return AndesTooltip(lightStyle: showCase.content,
+            return AndesTooltip(darkStyle: showCase.content,
                          title: showCase.title,
                          isDismissable: showCase.isDissmisable,
                          linkAction: AndesTooltipAction(text: primaryActionText, onPressed: {
@@ -82,19 +82,10 @@ class TooltipLightFactory: TooltipAbstractFactory {
         }
 
         if primaryActionStyle == .loud {
-            return AndesTooltip(lightStyle: showCase.content,
+            return AndesTooltip(darkStyle: showCase.content,
                          title: showCase.title,
                          isDismissable: showCase.isDissmisable,
                          primaryLoudAction: AndesTooltipAction(text: primaryActionText, onPressed: {
-
-                         }))
-        }
-
-        if primaryActionStyle == .quiet {
-            return AndesTooltip(lightStyle: showCase.content,
-                         title: showCase.title,
-                         isDismissable: showCase.isDissmisable,
-                         primaryQuietAction: AndesTooltipAction(text: primaryActionText, onPressed: {
 
                          }))
         }
@@ -109,25 +100,13 @@ class TooltipLightFactory: TooltipAbstractFactory {
               let secondaryActionText = showCase.secondaryActionText else { return nil }
 
         if primaryActionStyle == .loud && secondaryActionStyle == .transparent {
-            return AndesTooltip(lightStyle: showCase.content,
+            return AndesTooltip(darkStyle: showCase.content,
                                 title: showCase.title,
                                 isDismissable: showCase.isDissmisable,
                                 primaryLoudAction: AndesTooltipAction(text: primaryActionText, onPressed: {
 
                                 }),
                                 secondaryTransparentAction: AndesTooltipAction(text: secondaryActionText, onPressed: {
-
-                                }))
-        }
-
-        if primaryActionStyle == .quiet && secondaryActionStyle == .quiet {
-            return AndesTooltip(lightStyle: showCase.content,
-                                title: showCase.title,
-                                isDismissable: showCase.isDissmisable,
-                                primaryQuietAction: AndesTooltipAction(text: primaryActionText, onPressed: {
-
-                                }),
-                                secondaryQuietAction: AndesTooltipAction(text: secondaryActionText, onPressed: {
 
                                 }))
         }

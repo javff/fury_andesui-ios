@@ -216,22 +216,22 @@ extension AndesTooltipType {
     func getUseCaseForPrimaryAction() -> TooltipActionUseCaseDataSource? {
         switch self {
         case .dark:
-            return TooltipLightPrimaryCases()
+            return TooltipActionDarkUseCase()
         case .light:
             return TooltipLightPrimaryCases()
         case .highlight:
-            return TooltipLightPrimaryCases()
+            return TooltipActionHighlightUseCase()
         }
     }
 
     func getUseCaseForSecondaryAction(primaryAction: TooltipActionType) -> TooltipActionUseCaseDataSource? {
         switch self {
         case .dark:
-            return TooltipLightSecondaryCases(primaryAction: primaryAction)
+            return TooltipDarkSecondaryCase(primaryAction: primaryAction)
         case .light:
             return TooltipLightSecondaryCases(primaryAction: primaryAction)
         case .highlight:
-            return TooltipLightSecondaryCases(primaryAction: primaryAction)
+            return TooltipHighlightSecondaryCase(primaryAction: primaryAction)
         }
     }
 
@@ -240,9 +240,9 @@ extension AndesTooltipType {
         case .light:
             return TooltipLightFactory()
         case .dark:
-            return TooltipLightFactory()
+            return TooltipDarkFactory()
         case .highlight:
-            return TooltipLightFactory()
+            return TooltipHighlightFactory()
         }
     }
 

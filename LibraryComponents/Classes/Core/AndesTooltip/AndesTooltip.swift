@@ -99,7 +99,7 @@ import Foundation
         title: String? = nil,
         isDismissable: Bool = true
     ) {
-        self.init(content: content, title: title, isDismissable: isDismissable, type: .light)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .dark)
     }
 
     public convenience init(
@@ -141,7 +141,7 @@ import Foundation
         title: String? = nil,
         isDismissable: Bool = true
     ) {
-        self.init(content: content, title: title, isDismissable: isDismissable, type: .light)
+        self.init(content: content, title: title, isDismissable: isDismissable, type: .highlight)
     }
 
     public convenience init(

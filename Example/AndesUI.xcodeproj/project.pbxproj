@@ -137,6 +137,9 @@
 		E230FDC12580F71800D6ED78 /* ProgressIndicatorObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */; };
 		E230FDC22580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */; };
 		E2773F0725D5B4190081E891 /* TooltipDataShowCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2773F0625D5B4190081E891 /* TooltipDataShowCase.swift */; };
+		E2773F0C25D6112E0081E891 /* TooltipActionDarkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2773F0B25D6112E0081E891 /* TooltipActionDarkUseCase.swift */; };
+		E2773F1125D611580081E891 /* TooltipUseCaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2773F1025D611580081E891 /* TooltipUseCaseProtocols.swift */; };
+		E2773F1625D6136F0081E891 /* TooltipActionHighlightCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2773F1525D6136F0081E891 /* TooltipActionHighlightCase.swift */; };
 		E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */; };
 		E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */; };
 		E2C0157F2575D467001B89C3 /* ProgressIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */; };
@@ -355,6 +358,9 @@
 		E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressIndicatorObjcViewController.m; sourceTree = "<group>"; };
 		E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorObjcViewController.xib; sourceTree = "<group>"; };
 		E2773F0625D5B4190081E891 /* TooltipDataShowCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipDataShowCase.swift; sourceTree = "<group>"; };
+		E2773F0B25D6112E0081E891 /* TooltipActionDarkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipActionDarkUseCase.swift; sourceTree = "<group>"; };
+		E2773F1025D611580081E891 /* TooltipUseCaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipUseCaseProtocols.swift; sourceTree = "<group>"; };
+		E2773F1525D6136F0081E891 /* TooltipActionHighlightCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipActionHighlightCase.swift; sourceTree = "<group>"; };
 		E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorRouter.swift; sourceTree = "<group>"; };
 		E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorViewController.swift; sourceTree = "<group>"; };
 		E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorViewController.xib; sourceTree = "<group>"; };
@@ -1090,6 +1096,8 @@
 			isa = PBXGroup;
 			children = (
 				E212FFAF25D487B400F2AEE0 /* TooltipActionLightUseCase.swift */,
+				E2773F0B25D6112E0081E891 /* TooltipActionDarkUseCase.swift */,
+				E2773F1525D6136F0081E891 /* TooltipActionHighlightCase.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -1098,6 +1106,7 @@
 			isa = PBXGroup;
 			children = (
 				E2773F0625D5B4190081E891 /* TooltipDataShowCase.swift */,
+				E2773F1025D611580081E891 /* TooltipUseCaseProtocols.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1535,6 +1544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D2152E9241BCC65001CEA8D /* TextFieldsRouter.swift in Sources */,
+				E2773F1625D6136F0081E891 /* TooltipActionHighlightCase.swift in Sources */,
 				F899354524A0EC7B004BC82D /* CheckboxObjCViewController.m in Sources */,
 				0323A414256085A2001A480F /* DatePickerViewController.swift in Sources */,
 				F0AC4E47255EE312003B364C /* DropdownRouter.swift in Sources */,
@@ -1553,6 +1563,7 @@
 				E662DEB3254B305100A86D10 /* BottomSheetSwiftExampleViewController.swift in Sources */,
 				F8249D0824ABCA4E002A6456 /* AndesRadioButtonViewController.swift in Sources */,
 				6A3C9CFA23C692B6007D0C8B /* HomeRouter.swift in Sources */,
+				E2773F0C25D6112E0081E891 /* TooltipActionDarkUseCase.swift in Sources */,
 				E662DECD2551B81100A86D10 /* BottomSheetExampleScrollableContentViewController.swift in Sources */,
 				9CE112DB23CE587B0017B770 /* MessageViewController.swift in Sources */,
 				9C9B5A8F23ECEED40007234B /* WhatsNewViewController.swift in Sources */,
@@ -1589,6 +1600,7 @@
 				E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */,
 				490589A524BE3CA70044FD0B /* CardViewController.swift in Sources */,
 				BADFA68F25CC567300165DFE /* AndesBadgeExtensionTabBarController.swift in Sources */,
+				E2773F1125D611580081E891 /* TooltipUseCaseProtocols.swift in Sources */,
 				490589A124BE3C440044FD0B /* CardRouter.swift in Sources */,
 				49BC925024C8BF72007A03D3 /* CardObjCViewController.m in Sources */,
 				9C9B5A8C23ECEEBE0007234B /* WhatsNewRouter.swift in Sources */,
