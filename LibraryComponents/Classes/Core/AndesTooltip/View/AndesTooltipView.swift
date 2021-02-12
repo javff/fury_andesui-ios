@@ -15,4 +15,5 @@ import Foundation
 internal protocol AndesTooltipView: UIView {
     func update(withConfig config: AndesTooltipViewConfig)
     func show(in view: UIView, within superView: UIView)
+    func dismiss()
 }

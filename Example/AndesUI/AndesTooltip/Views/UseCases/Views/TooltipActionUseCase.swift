@@ -16,29 +16,15 @@ enum TooltipActionType: String, CaseIterable {
     case link = "link"
 }
 
-struct TooltipDataShowCase {
-    var content: String
-    var title: String?
-    var isDissmisable: Bool
-    var tooltipType: AndesTooltipType?
-
-    var primaryActionStyle: TooltipActionType?
-    var primayActionText: String?
-    var secondaryActionStyle: TooltipActionType?
-    var secondaryActionText: String?
-
-    func isValid() -> Bool {
-        return !content.isEmpty && tooltipType != nil
-    }
-}
-
 protocol TooltipActionUseCaseDataSource: class {
     func supportTypes() -> [TooltipActionType]
     func titleForType() -> String
 }
 
 protocol TooltipActionUseCaseDelegate: class {
-    func tooltipCases(_ tooltipCase: TooltipActionUseCase, didSelectCase selectedCase: TooltipActionType)
+    func tooltipCase(_ tooltipCase: TooltipActionUseCase, didSelectCase selectedCase: TooltipActionType)
+
+    func tooltipCase(_ tooltipCase: TooltipActionUseCase, updateInfo titleInfo: String?)
 }
 
 class TooltipActionUseCase: UIView {
@@ -46,7 +32,6 @@ class TooltipActionUseCase: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var typeTextField: UITextField!
-    @IBOutlet weak var contentTextView: UITextView!
 
     let typePicker = UIPickerView()
 
@@ -60,21 +45,18 @@ class TooltipActionUseCase: UIView {
 
     private var actionTypes: [TooltipActionType] = []
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.setupView()
-    }
-
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         setupNib()
         setupView()
+        setupEvents()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupNib()
         setupView()
+        setupEvents()
     }
 
     private func setupNib() {
@@ -94,6 +76,14 @@ class TooltipActionUseCase: UIView {
         typeTextField.inputView = typePicker
         typePicker.delegate = self
         typePicker.dataSource = self
+    }
+
+    private func setupEvents() {
+        self.titleTextField.addTarget(self, action: #selector(self.titleDidChange(_:)), for: .editingChanged)
+    }
+
+    @objc func titleDidChange(_ textField: UITextField) {
+        self.delegate?.tooltipCase(self, updateInfo: textField.text)
     }
 
     private func reloadData() {
@@ -122,6 +112,6 @@ extension TooltipActionUseCase: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedType = actionTypes[row]
         typeTextField.text = selectedType.rawValue
-        self.delegate?.tooltipCases(self, didSelectCase: selectedType)
+        self.delegate?.tooltipCase(self, didSelectCase: selectedType)
     }
 }

@@ -136,6 +136,7 @@
 		E212FFB025D487B700F2AEE0 /* TooltipActionLightUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212FFAF25D487B400F2AEE0 /* TooltipActionLightUseCase.swift */; };
 		E230FDC12580F71800D6ED78 /* ProgressIndicatorObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */; };
 		E230FDC22580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */; };
+		E2773F0725D5B4190081E891 /* TooltipDataShowCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2773F0625D5B4190081E891 /* TooltipDataShowCase.swift */; };
 		E2C0157A2575D237001B89C3 /* ProgressIndicatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */; };
 		E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */; };
 		E2C0157F2575D467001B89C3 /* ProgressIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */; };
@@ -353,6 +354,7 @@
 		E230FDBE2580F71800D6ED78 /* ProgressIndicatorObjcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressIndicatorObjcViewController.h; sourceTree = "<group>"; };
 		E230FDBF2580F71800D6ED78 /* ProgressIndicatorObjcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressIndicatorObjcViewController.m; sourceTree = "<group>"; };
 		E230FDC02580F71800D6ED78 /* ProgressIndicatorObjcViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorObjcViewController.xib; sourceTree = "<group>"; };
+		E2773F0625D5B4190081E891 /* TooltipDataShowCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipDataShowCase.swift; sourceTree = "<group>"; };
 		E2C015792575D237001B89C3 /* ProgressIndicatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorRouter.swift; sourceTree = "<group>"; };
 		E2C0157C2575D467001B89C3 /* ProgressIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorViewController.swift; sourceTree = "<group>"; };
 		E2C0157D2575D467001B89C3 /* ProgressIndicatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressIndicatorViewController.xib; sourceTree = "<group>"; };
@@ -1068,7 +1070,8 @@
 		E212FF9A25D4473500F2AEE0 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				E212FFBA25D48C7000F2AEE0 /* cases */,
+				E2773F0225D5B3FE0081E891 /* Model */,
+				E212FFBA25D48C7000F2AEE0 /* Cases */,
 				E212FFB925D48C6800F2AEE0 /* Views */,
 			);
 			path = UseCases;
@@ -1083,12 +1086,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		E212FFBA25D48C7000F2AEE0 /* cases */ = {
+		E212FFBA25D48C7000F2AEE0 /* Cases */ = {
 			isa = PBXGroup;
 			children = (
 				E212FFAF25D487B400F2AEE0 /* TooltipActionLightUseCase.swift */,
 			);
-			path = cases;
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		E2773F0225D5B3FE0081E891 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2773F0625D5B4190081E891 /* TooltipDataShowCase.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E2C015772575D218001B89C3 /* ProgressIndicator */ = {
@@ -1556,6 +1567,7 @@
 				F0AC4E50255EE400003B364C /* DropdownViewController.swift in Sources */,
 				80B22F1C24DC5C3700FE9197 /* CoachmarkViewController.swift in Sources */,
 				E2C0157E2575D467001B89C3 /* ProgressIndicatorViewController.swift in Sources */,
+				E2773F0725D5B4190081E891 /* TooltipDataShowCase.swift in Sources */,
 				F85E051E24AF68150059C6FA /* RadioButtonObjCViewController.m in Sources */,
 				90F4781F243534F0001CEC90 /* BadgeObjCViewController.m in Sources */,
 				8617BD172499B5860071319C /* SnackbarRouter.swift in Sources */,

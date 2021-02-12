@@ -11,6 +11,11 @@ import AndesUI
 
 class AndesTooltipViewController: UIViewController {
 
+    @IBOutlet weak var configButton: AndesButton!
+    @IBOutlet weak var configViewZeroConstraint: NSLayoutConstraint!
+    @IBOutlet weak var configStackContainerView: UIStackView!
+    @IBOutlet weak var configViewContainer: UIView!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var typeField: UITextField!
@@ -25,17 +30,13 @@ class AndesTooltipViewController: UIViewController {
 
     var primaryActionTooltipCase: TooltipActionUseCase?
     var secondaryActionTooltipCase: TooltipActionUseCase?
-
-    var contentObserve: NSKeyValueObservation?
-    var dismissObserve: NSKeyValueObservation?
-    var typeFieldObserve: NSKeyValueObservation?
+    var tooltip: AndesTooltip?
 
     lazy var dataShowCase: TooltipDataShowCase = {
         return TooltipDataShowCase(
             content: self.contentTextView.text,
-            title: "",
+            title: nil,
             isDissmisable: self.dismissibleSwitch.isOn,
-            tooltipType: nil,
             primaryActionStyle: nil,
             primayActionText: nil,
             secondaryActionStyle: nil,
@@ -48,7 +49,8 @@ class AndesTooltipViewController: UIViewController {
 
     var selectedType: AndesTooltipType? {
         didSet {
-            self.dataShowCase.tooltipType = selectedType
+            guard let type = selectedType else { return }
+            self.dataShowCase.tooltipType = type
         }
     }
 
@@ -56,28 +58,66 @@ class AndesTooltipViewController: UIViewController {
         super.viewDidLoad()
         configurePicker()
         setupView()
-        setupDataBinding()
-    }
-
-    deinit {
-        self.contentObserve?.invalidate()
-        self.dismissObserve?.invalidate()
-        self.typeFieldObserve?.invalidate()
+        setupEvents()
+        setupDefaultCase()
     }
 
     private func setupView() {
+        self.updateConfig.isEnabled = false
         contentTextView.layer.borderColor = UIColor.lightGray.cgColor
         contentTextView.layer.borderWidth = 1
+        self.configStackContainerView.isHidden = true
+        self.updateConfigView(hide: true)
     }
 
-    private func setupDataBinding() {
-        self.contentObserve = contentTextView.observe(\.text) { (_, value) in
-            self.dataShowCase.content = value.newValue ?? ""
+    private func setupDefaultCase() {
+        self.pickerView(self.typePicker, didSelectRow: 0, inComponent: 0)
+    }
+
+    private func setupEvents() {
+        self.dismissibleSwitch.addTarget(self, action: #selector(self.switchValueChanged(_:)), for: .valueChanged)
+
+        self.titleTextField.addTarget(self, action: #selector(self.titleTextFieldChanged(_:)), for: .editingChanged)
+
+        self.contentTextView.delegate = self
+
+    }
+
+    @objc func switchValueChanged(_ switchComponent: UISwitch) {
+        self.dataShowCase.isDissmisable = switchComponent.isOn
+    }
+
+    @objc func titleTextFieldChanged(_ textField: UITextField) {
+        self.dataShowCase.title = textField.text
+    }
+
+    @IBAction func configButtonTapped(_ sender: Any) {
+        let hide = !self.configStackContainerView.isHidden
+        self.updateConfigView(hide: hide)
+    }
+
+    private func updateConfigView(hide: Bool) {
+        UIView.transition(with: configView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.configStackContainerView.isHidden = hide
+        }) { (_) in
+            if hide {
+                self.scrollView.setContentOffset(.zero, animated: true)
+            } else {
+                self.scrollView.scrollRectToVisible(self.configView.frame, animated: true)
+            }
         }
 
-        self.dismissObserve = dismissibleSwitch.observe(\.isOn) { (_, value) in
-            self.dataShowCase.isDissmisable = value.newValue ?? false
+        if self.configStackContainerView.isHidden {
+            self.configButton.text = "change config"
+            self.configButton.hierarchy = .quiet
+        } else {
+            self.configButton.text = "hide config"
+            self.configButton.hierarchy = .transparent
         }
+    }
+
+    @IBAction func updateConfigButtonTapped(_ sender: Any) {
+        self.updateConfigView(hide: true)
     }
 
     private func configurePicker() {
@@ -85,6 +125,14 @@ class AndesTooltipViewController: UIViewController {
         typePicker.delegate = self
         typePicker.dataSource = self
     }
+
+    @IBAction func showTooltipButtonTapped(_ sender: UIButton) {
+        tooltip?.dismiss()
+        let factory = selectedType?.getFactoryTooltip()
+        tooltip = factory?.buildTooltip(using: dataShowCase)
+        tooltip?.show(in: sender, within: self.scrollView)
+    }
+
 }
 
 extension AndesTooltipViewController: UIPickerViewDataSource, UIPickerViewAccessibilityDelegate {
@@ -107,12 +155,12 @@ extension AndesTooltipViewController: UIPickerViewDataSource, UIPickerViewAccess
         self.view.endEditing(true)
 
         self.updatePrimaryActionUseCase()
-
     }
 }
 
 // MARK: - update options
 extension AndesTooltipViewController: TooltipActionUseCaseDelegate {
+
     func updatePrimaryActionUseCase() {
 
         useCaseSecondaryActionContainer.subviews.forEach { $0.removeFromSuperview()
@@ -140,13 +188,28 @@ extension AndesTooltipViewController: TooltipActionUseCaseDelegate {
         self.secondaryActionTooltipCase = view
     }
 
-    func tooltipCases(_ tooltipCase: TooltipActionUseCase, didSelectCase selectedCase: TooltipActionType) {
+    func tooltipCase(_ tooltipCase: TooltipActionUseCase, didSelectCase selectedCase: TooltipActionType) {
 
         if tooltipCase === self.primaryActionTooltipCase {
+            self.dataShowCase.primaryActionStyle = selectedCase
             self.updateSecondaryActionUseCase(selectedCase: selectedCase)
         }
 
+        if tooltipCase === self.secondaryActionTooltipCase {
+            self.dataShowCase.secondaryActionStyle = selectedCase
+        }
     }
+
+    func tooltipCase(_ tooltipCase: TooltipActionUseCase, updateInfo titleInfo: String?) {
+        if tooltipCase === self.primaryActionTooltipCase {
+            self.dataShowCase.primayActionText = titleInfo
+        }
+
+        if tooltipCase === self.secondaryActionTooltipCase {
+            self.dataShowCase.secondaryActionText = titleInfo
+        }
+    }
+
 }
 
 extension AndesTooltipType {
@@ -172,8 +235,25 @@ extension AndesTooltipType {
         }
     }
 
+    func getFactoryTooltip() -> TooltipAbstractFactory {
+        switch self {
+        case .light:
+            return TooltipLightFactory()
+        case .dark:
+            return TooltipLightFactory()
+        case .highlight:
+            return TooltipLightFactory()
+        }
+    }
+
     func hasSecondaryAction(for primaryAction: TooltipActionType) -> Bool {
         guard let useCases = self.getUseCaseForSecondaryAction(primaryAction: primaryAction) else { return false }
         return useCases.supportTypes().count >  0
+    }
+}
+
+extension AndesTooltipViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.dataShowCase.content = textView.text
     }
 }

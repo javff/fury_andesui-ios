@@ -24,6 +24,10 @@ import Foundation
         self.contentView.show(in: view, within: superView)
     }
 
+    public func dismiss() {
+        self.contentView.dismiss()
+    }
+
     // MARK: - Light variants
     public convenience init(
         lightStyle content: String,
