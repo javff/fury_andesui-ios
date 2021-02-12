@@ -218,7 +218,7 @@ import Foundation
         let withActions = primaryAction != nil || secondaryAction != nil
 
         if withActions {
-            return AndesTooltipViewLink(withConfig: config)
+            return AndesTooltipViewActions(withConfig: config)
         }
 
         return AndesTooltipViewDefault(withConfig: config)

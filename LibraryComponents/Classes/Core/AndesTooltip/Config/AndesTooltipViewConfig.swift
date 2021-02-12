@@ -27,6 +27,9 @@ internal struct AndesTooltipViewConfig {
     var primaryActionConfig: AndesButtonViewConfig?
     var secondaryActionConfig: AndesButtonViewConfig?
 
+    var primaryActionOnPressed: (() -> Void)?
+    var secondaryActionOnPressed: (() -> Void)?
+
     lazy var titleStyle: AndesFontStyle = {
         return AndesFontStyle(
             textColor: self.textColor,
@@ -48,7 +51,9 @@ internal struct AndesTooltipViewConfig {
          content: String,
          isDismissable: Bool,
          primaryActionConfig: AndesButtonViewConfig?,
-         secondaryActionConfig: AndesButtonViewConfig?) {
+         secondaryActionConfig: AndesButtonViewConfig?,
+         primaryActionOnPressed: (() -> Void)?,
+         secondaryActionOnPressed: (() -> Void)?) {
         backgroundColor = type.backgroundColor
         maxWidth = type.maxWidth
         shadowOffset = type.shadowOffset
@@ -62,5 +67,7 @@ internal struct AndesTooltipViewConfig {
         self.isDismissable = isDismissable
         self.primaryActionConfig = primaryActionConfig
         self.secondaryActionConfig = secondaryActionConfig
+        self.primaryActionOnPressed = primaryActionOnPressed
+        self.secondaryActionOnPressed = secondaryActionOnPressed
     }
 }
