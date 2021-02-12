@@ -90,7 +90,7 @@ internal class AndesTooltipActionFactory {
         case .dark, .highlight:
             return AndesTooltipActionLinkHierarchy(textColor: UIColor.Andes.white, pressedColor: UIColor.Andes.white)
         default:
-            return AndesTooltipActionLinkHierarchy(textColor: UIColor.Andes.blueML800, pressedColor: .clear)
+            return AndesTooltipActionLinkHierarchy(textColor: AndesStyleSheetManager.styleSheet.accentColor, pressedColor: .clear)
         }
 
     }

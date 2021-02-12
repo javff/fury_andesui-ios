@@ -4,37 +4,38 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AndesTooltipViewDefault" customModule="AndesUI">
             <connections>
-                <outlet property="closeButton" destination="yGf-3c-umw" id="Plt-SH-5jt"/>
-                <outlet property="closeButtonHeightConstraint" destination="Dbw-76-06E" id="XG2-Zo-SJY"/>
-                <outlet property="componentView" destination="iN0-l3-epB" id="PGA-ED-eGJ"/>
-                <outlet property="contentLabel" destination="xpo-Rk-sfr" id="Z1g-2q-ojQ"/>
-                <outlet property="titleLabel" destination="NXB-nA-49g" id="HoH-cf-fFy"/>
+                <outlet property="closeButton" destination="Ce0-sW-eXP" id="5pw-Y8-avR"/>
+                <outlet property="closeButtonHeightConstraint" destination="M9y-xU-lKP" id="cto-a8-adc"/>
+                <outlet property="componentView" destination="djw-A3-097" id="FM0-oM-7Tc"/>
+                <outlet property="contentLabel" destination="oSU-M6-Q6W" id="zRT-lD-sK1"/>
+                <outlet property="titleLabel" destination="zFd-8C-8t4" id="Wbg-Zv-gqH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="446" height="101"/>
+        <view contentMode="scaleToFill" id="djw-A3-097">
+            <rect key="frame" x="0.0" y="0.0" width="446" height="177"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMI-ud-gfk">
-                    <rect key="frame" x="16" y="16" width="396" height="69"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDF-sT-yqg">
+                    <rect key="frame" x="16" y="16" width="394" height="145"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-DB-GhB">
-                            <rect key="frame" x="0.0" y="0.0" width="396" height="53.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aVb-se-Wom">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="39"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXB-nA-49g">
-                                    <rect key="frame" x="0.0" y="0.0" width="396" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFd-8C-8t4">
+                                    <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sum Lorem it fin sum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it finsum Lorem it fin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpo-Rk-sfr">
-                                    <rect key="frame" x="0.0" y="24.5" width="396" height="29"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSU-M6-Q6W">
+                                    <rect key="frame" x="0.0" y="24.5" width="394" height="14.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
@@ -45,38 +46,39 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Mby-DB-GhB" firstAttribute="top" secondItem="dMI-ud-gfk" secondAttribute="top" id="LjL-4b-BxO"/>
-                        <constraint firstAttribute="trailing" secondItem="Mby-DB-GhB" secondAttribute="trailing" id="NzV-Sh-h49"/>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Mby-DB-GhB" secondAttribute="bottom" id="ah7-Pf-GFc"/>
-                        <constraint firstItem="Mby-DB-GhB" firstAttribute="leading" secondItem="dMI-ud-gfk" secondAttribute="leading" id="vme-8x-lej"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aVb-se-Wom" secondAttribute="bottom" id="6hJ-Iw-AkJ"/>
+                        <constraint firstItem="aVb-se-Wom" firstAttribute="leading" secondItem="aDF-sT-yqg" secondAttribute="leading" id="Shm-bm-Rcd"/>
+                        <constraint firstItem="aVb-se-Wom" firstAttribute="top" secondItem="aDF-sT-yqg" secondAttribute="top" id="p7P-ZM-xAQ"/>
+                        <constraint firstAttribute="trailing" secondItem="aVb-se-Wom" secondAttribute="trailing" id="rqT-Ih-bsf"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-3c-umw">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce0-sW-eXP">
                     <rect key="frame" x="412" y="2" width="32" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="Dbw-76-06E"/>
-                        <constraint firstAttribute="width" secondItem="yGf-3c-umw" secondAttribute="height" multiplier="1:1" id="Sel-tc-Qn1"/>
+                        <constraint firstAttribute="height" constant="32" id="M9y-xU-lKP"/>
+                        <constraint firstAttribute="width" secondItem="Ce0-sW-eXP" secondAttribute="height" multiplier="1:1" id="fMu-hi-u1M"/>
                     </constraints>
                     <state key="normal" image="andes_ui_close_16"/>
                     <connections>
-                        <action selector="closeButtonTapped" destination="-1" eventType="touchUpInside" id="euj-88-6lJ"/>
+                        <action selector="closeButtonTapped" destination="-1" eventType="touchUpInside" id="De3-ei-Aqj"/>
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="OX0-HH-vPr"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="dMI-ud-gfk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="A7y-G6-mK1"/>
-                <constraint firstAttribute="bottom" secondItem="dMI-ud-gfk" secondAttribute="bottom" constant="16" id="L74-GW-K2z"/>
-                <constraint firstAttribute="trailing" secondItem="yGf-3c-umw" secondAttribute="trailing" constant="2" id="Sb8-Hf-4yh"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yGf-3c-umw" secondAttribute="bottom" id="VK9-Jd-lJF"/>
-                <constraint firstItem="yGf-3c-umw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="Zu1-gL-fps"/>
-                <constraint firstAttribute="trailing" secondItem="dMI-ud-gfk" secondAttribute="trailing" priority="750" constant="16" id="eRd-bX-tBi"/>
-                <constraint firstItem="dMI-ud-gfk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="fM2-Ns-Yfd"/>
-                <constraint firstItem="yGf-3c-umw" firstAttribute="leading" secondItem="dMI-ud-gfk" secondAttribute="trailing" priority="999" id="gDf-B3-H9a"/>
-                <constraint firstItem="yGf-3c-umw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="jAL-aP-Vh5"/>
+                <constraint firstItem="aDF-sT-yqg" firstAttribute="leading" secondItem="OX0-HH-vPr" secondAttribute="leading" constant="16" id="BPf-ia-XeR"/>
+                <constraint firstItem="OX0-HH-vPr" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aDF-sT-yqg" secondAttribute="trailing" priority="999" constant="16" id="WuS-vh-wa7"/>
+                <constraint firstItem="aDF-sT-yqg" firstAttribute="top" secondItem="djw-A3-097" secondAttribute="top" constant="16" id="aHb-9y-3ji"/>
+                <constraint firstItem="Ce0-sW-eXP" firstAttribute="top" secondItem="djw-A3-097" secondAttribute="top" constant="2" id="evm-gz-W9k"/>
+                <constraint firstItem="Ce0-sW-eXP" firstAttribute="leading" secondItem="aDF-sT-yqg" secondAttribute="trailing" priority="999" constant="2" id="fdX-bk-eaL"/>
+                <constraint firstItem="OX0-HH-vPr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ce0-sW-eXP" secondAttribute="bottom" id="mr9-mA-LvH"/>
+                <constraint firstItem="OX0-HH-vPr" firstAttribute="trailing" secondItem="Ce0-sW-eXP" secondAttribute="trailing" constant="2" id="sbu-bp-o9k"/>
+                <constraint firstItem="Ce0-sW-eXP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="djw-A3-097" secondAttribute="leading" id="x4u-AB-ixx"/>
+                <constraint firstAttribute="bottom" secondItem="aDF-sT-yqg" secondAttribute="bottom" constant="16" id="xqW-hz-J3q"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-420.28985507246381" y="134.93303571428569"/>
+            <point key="canvasLocation" x="-591" y="-20"/>
         </view>
     </objects>
     <resources>

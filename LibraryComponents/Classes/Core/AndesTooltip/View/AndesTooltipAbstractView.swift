@@ -48,9 +48,7 @@ class AndesTooltipAbstractView: UIView, AndesTooltipView {
     }
 
     @objc func dismiss() {
-        self.tooltip.dismiss {
-            // call completion dismiss
-        }
+        self.tooltip.dismiss()
     }
 
     func setup() {

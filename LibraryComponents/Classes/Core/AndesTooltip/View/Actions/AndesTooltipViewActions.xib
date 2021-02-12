@@ -93,10 +93,9 @@
             <constraints>
                 <constraint firstItem="L1N-MJ-k9j" firstAttribute="leading" secondItem="Hac-p2-yMN" secondAttribute="leading" constant="16" id="0xO-cM-31i"/>
                 <constraint firstItem="Hac-p2-yMN" firstAttribute="trailing" secondItem="yj2-vv-Nke" secondAttribute="trailing" constant="2" id="3PP-Vq-Hpb"/>
-                <constraint firstItem="Hac-p2-yMN" firstAttribute="trailing" secondItem="L1N-MJ-k9j" secondAttribute="trailing" priority="750" constant="16" id="8Np-wu-uup"/>
+                <constraint firstItem="Hac-p2-yMN" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="L1N-MJ-k9j" secondAttribute="trailing" constant="16" id="8Np-wu-uup"/>
                 <constraint firstItem="yj2-vv-Nke" firstAttribute="top" secondItem="k3e-Ne-1CV" secondAttribute="top" constant="2" id="AR6-Tz-o4q"/>
                 <constraint firstAttribute="bottom" secondItem="L1N-MJ-k9j" secondAttribute="bottom" constant="16" id="GZW-fh-5p0"/>
-                <constraint firstItem="yj2-vv-Nke" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="31F-6C-4Ed" secondAttribute="trailing" id="IkI-Wi-3ZN"/>
                 <constraint firstItem="yj2-vv-Nke" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k3e-Ne-1CV" secondAttribute="leading" id="MkO-gP-wzv"/>
                 <constraint firstItem="yj2-vv-Nke" firstAttribute="leading" secondItem="L1N-MJ-k9j" secondAttribute="trailing" priority="999" constant="2" id="oB2-Fj-6ZB"/>
                 <constraint firstItem="L1N-MJ-k9j" firstAttribute="top" secondItem="k3e-Ne-1CV" secondAttribute="top" constant="16" id="sUq-X0-Lxb"/>
